@@ -1,5 +1,17 @@
 import React from "react";
+import { useContext } from "react";
+import { AuthContext } from "../context/auth.context";
+import { Navigate } from "react-router-dom";
 
-export default function IsPrivate() {
-  return <div>IsPrivate</div>;
+export default function IsPrivate({ children }) {
+  const { isLoggedIn, isLoading } = useContext(AuthContext);
+
+  if (isLoading) {
+    return <p>Loading ...</p>;
+  } else if (!isLoggedIn) {
+    return <Navigate to="/login" />;
+  } else {
+    // If the user is logged in, allow them to see the page
+    return children;
+  }
 }
