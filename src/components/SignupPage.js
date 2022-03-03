@@ -73,7 +73,7 @@ export default function SignupPage() {
           />
         </label>
         <br />
-        <button type="submit">Register!</button>
+        <button type="submit">Register</button>
       </form>
       <p>
         If you already have account, <Link to={"/login"}>login here</Link>.

@@ -9,7 +9,7 @@ export default function HomePage() {
       </div>
       <div>
         <h4>
-          If you're looking for a new career, choose a course{" "}
+          Looking for a new career? Choose a course{" "}
           <Link to={"/courses/all"}>here</Link>.
         </h4>
         <h4>
