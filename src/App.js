@@ -1,3 +1,4 @@
+import React from "react";
 import "./App.css";
 import { useContext, useEffect, useState } from "react";
 import { Route, Routes } from "react-router";
@@ -7,7 +8,7 @@ import CourseCreate from "./components/CourseCreate";
 import CourseDetails from "./components/CourseDetails";
 import CoursesAll from "./components/CoursesAll";
 import HomePage from "./components/HomePage";
-import IsInvisible from "./components/IsAnon";
+import IsInvisible from "./components/IsInvisible";
 import IsPrivate from "./components/IsPrivate";
 import LoginPage from "./components/LoginPage";
 import Navbar from "./components/Navbar";
