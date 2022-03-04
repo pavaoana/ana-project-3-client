@@ -22,17 +22,20 @@ export default function EditCourse(props) {
   const navigate = useNavigate();
   const { getToken } = useContext(AuthContext);
 
-  useEffect(() => {
-    axios
-      .post(`${process.env.REACT_APP_API_URL}/courses/${courseId}`)
-      .then((response) => {
-        const thisCourse = response.data;
-        setCourseName(thisCourse.courseName);
-        setDescription(thisCourse.description);
-        //add all other necessary fields
-      })
-      .catch((e) => console.log("An error occured while editing a course.", e));
-  }, [courseId]);
+  // useEffect(() => {
+  //   const storedToken = getToken();
+  //   axios
+  //     .put(`${process.env.REACT_APP_API_URL}/courses/edit/${courseId}`, {
+  //       headers: { Authorization: `Bearer ${storedToken}` },
+  //     })
+  //     .then((response) => {
+  //       const thisCourse = response.data;
+  //       setCourseName(thisCourse.courseName);
+  //       setDescription(thisCourse.description);
+  //       //add all other necessary fields
+  //     })
+  //     .catch((e) => console.log("An error occured while editing a course.", e));
+  // }, [courseId]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -51,21 +54,25 @@ export default function EditCourse(props) {
     const storedToken = getToken();
     axios
       .put(
-        `${process.env.REACT_APP_API_URL}/courses/${courseId}`,
+        `${process.env.REACT_APP_API_URL}/courses/edit/${courseId}`,
         courseDetails,
         {
           headers: { Authorization: `Bearer ${storedToken}` },
         }
       )
       .then((response) => {
-        props.updateCourses();
+        //props.updateCourses();
         navigate(`/courses/${courseId}`);
       });
   };
 
   const deleteProject = () => {
+    const storedToken = getToken();
+
     axios
-      .delete(`${process.env.REACT_APP_API_URL}/courses/${courseId}`)
+      .delete(`${process.env.REACT_APP_API_URL}/courses/delete/${courseId}`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
       .then(() => {
         navigate("/courses/all");
       })

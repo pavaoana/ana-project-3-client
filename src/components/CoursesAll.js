@@ -13,7 +13,7 @@ export default function CoursesAll(props) {
             <div className="course-details">
               <h3>{course.courseName}</h3>
               <p>{course.description}</p>
-              {course &&
+              {/* {course &&
                 course.topics.map((topic) => (
                   <li className="TopicCard inCourse" key={topic._id}>
                     <h4>{topic.title}</h4>
@@ -30,17 +30,19 @@ export default function CoursesAll(props) {
                   <p>Pre-Requisites? {course.preRequisites}</p>
                   <p>Price: {course.cost}</p>
                 </>
-              )}
-              <p>
+              )} */}
+              /*{" "}
+              {/* <p>
                 Click{" "}
                 <a href={course.link} target="_blank">
                   here
                 </a>{" "}
                 if you want to know more.
-              </p>
+              </p> */}
               <Link to={`/courses/${course._id}`}>
                 <h3>See Details</h3>
-              </Link>
+              </Link>{" "}
+              */
             </div>
           </div>
         );

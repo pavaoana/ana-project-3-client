@@ -7,6 +7,7 @@ import { AuthContext } from "../context/auth.context";
 export default function TopicCreate(props) {
   const [topicName, setTopicName] = useState("");
   const [description, setDescription] = useState("");
+  const [message, setMessage] = useState(undefined);
 
   const navigate = useNavigate();
   const { getToken } = useContext(AuthContext);
@@ -19,7 +20,7 @@ export default function TopicCreate(props) {
     const topicDetails = {
       topicName,
       description,
-      projectId,
+      //projectId,
     };
 
     const storedToken = getToken();
@@ -29,7 +30,10 @@ export default function TopicCreate(props) {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        props.updateCourseWithTopic();
+        setTopicName("");
+        setDescription("");
+        navigate("/courses/add");
+        //props.updateCourseWithTopic();
       })
       .catch((e) =>
         console.log("An error occured while creating a new course.", e)

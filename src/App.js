@@ -36,28 +36,11 @@ function App() {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
+        console.log("response.data:", response.data);
         setCoursesArr(response.data);
       })
-      .catch((e) => console.log("Error getting list of all projects", e));
+      .catch((e) => console.log("Error getting list of all courses", e));
   };
-
-  const getCourseDetails = () => {
-    const storedToken = getToken();
-
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/courses/${courseId}`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
-      .then((response) => {
-        const thisCourse = response.data;
-        setCoursesArr(thisCourse);
-      })
-      .catch((e) => console.log("Error getting this course", e));
-  };
-
-  useEffect(() => {
-    getCourseDetails();
-  }, []);
 
   return (
     <div className="App">
@@ -71,10 +54,7 @@ function App() {
           element={<CoursesAll courses={coursesArr} />}
         />
 
-        <Route
-          path="/courses/:courseId"
-          element={<CourseDetails courses={coursesArr} />}
-        />
+        <Route path="/courses/:courseId" element={<CourseDetails />} />
 
         <Route
           path="/courses/edit/:courseId"
