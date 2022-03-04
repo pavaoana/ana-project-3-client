@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { AuthContext } from "../context/auth.context";
 
-export default function CourseCreate(props) {
+export default function EditCourse(props) {
   const [courseName, setCourseName] = useState("");
   const [description, setDescription] = useState("");
   // const [topics, setTopics] = useState([]);
@@ -18,8 +18,21 @@ export default function CourseCreate(props) {
   // const [cost, setCost] = useState(0);
   // const [link, setLink] = useState("");
 
+  const { courseId } = useParams();
   const navigate = useNavigate();
   const { getToken } = useContext(AuthContext);
+
+  useEffect(() => {
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/courses/${courseId}`)
+      .then((response) => {
+        const thisCourse = response.data;
+        setCourseName(thisCourse.courseName);
+        setDescription(thisCourse.description);
+        //add all other necessary fields
+      })
+      .catch((e) => console.log("An error occured while editing a course.", e));
+  }, [courseId]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,23 +49,23 @@ export default function CourseCreate(props) {
     }; // add the ones that were commented: image, schedule, careerServices, jobGuaranteed
 
     const storedToken = getToken();
-
     axios
-      .post(`${process.env.REACT_APP_API_URL}/courses/add`, courseDetails, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
-      .then(() => {
+      .post(
+        `${process.env.REACT_APP_API_URL}/courses/${courseId}`,
+        courseDetails,
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        }
+      )
+      .then((response) => {
         props.updateCourses();
-        navigate("/courses/all");
-      })
-      .catch((e) =>
-        console.log("An error occured while creating a new course.", e)
-      );
+        navigate(`/courses/${courseId}`);
+      });
   };
 
   return (
-    <div className="CreateCourse">
-      <h3>Fill the form below to publish the details of a new course:</h3>
+    <div className="EditCourse">
+      <h4>To edit the course, change the form below:</h4>
 
       <form onSubmit={handleSubmit}>
         <label>
@@ -60,7 +73,6 @@ export default function CourseCreate(props) {
           <input
             type="text"
             required={true}
-            placeholder="e.g.: Data Science Bootcamp"
             name="courseName"
             value={courseName}
             onChange={(e) => setCourseName(e.target.value)}
@@ -72,14 +84,13 @@ export default function CourseCreate(props) {
           <textarea
             type="text"
             required={true}
-            placeholder="e.g.: Our Data Science course will transform you into a Data Scientist in a matter of weeks. You will analyse data to make decisions, implement Machine Learning models and build a practical data application."
             name="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
         </label>
         <br />
-        <button type="submit">Publish</button>
+        <button type="submit">Update</button>
       </form>
     </div>
   );

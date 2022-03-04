@@ -11,7 +11,7 @@ export default function Navbar() {
       <NavLink to="/courses/all">Courses</NavLink>{" "}
       {isLoggedIn && (
         <>
-          <NavLink to="/courses/create">Add a Course</NavLink>{" "}
+          <NavLink to="/courses/add">Add a Course</NavLink>{" "}
           <NavLink to="/topics/add">Add a Topic</NavLink>{" "}
           <button onClick={logOutUser}>Logout</button>
         </>

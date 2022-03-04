@@ -9,7 +9,7 @@ export default function IsInvisible({ children }) {
   if (isLoading) return <p>Loading...</p>;
 
   if (isLoggedIn) {
-    return <Navigate to="/courses/create" />;
+    return <Navigate to="/courses/add" />;
   } else {
     // If the user is not logged in, allow them to see the page
     return children;

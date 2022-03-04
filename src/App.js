@@ -15,6 +15,7 @@ import Navbar from "./components/Navbar";
 import SignupPage from "./components/SignupPage";
 import TopicCreate from "./components/TopicCreate";
 import TopicDetails from "./components/TopicDetails";
+import EditCourse from "./components/EditCourse";
 
 function App() {
   const [coursesArr, setCoursesArr] = useState([]);
@@ -49,13 +50,18 @@ function App() {
           element={<CoursesAll courses={coursesArr} />}
         />
 
-        <Route path="/courses/:courseId" element={<CourseDetails />} />
+        <Route
+          path="/courses/:courseId"
+          element={<CourseDetails courses={coursesArr} />}
+        />
+
+        <Route path="/courses/edit/:courseId" element={<EditCourse />} />
 
         <Route
-          path="/courses/create"
+          path="/courses/add"
           element={
             <IsPrivate>
-              <CourseCreate updateAllCourses={getCourses} />
+              <CourseCreate updateCourses={getCourses} />
             </IsPrivate>
           }
         />

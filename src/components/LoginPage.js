@@ -26,7 +26,7 @@ export default function LoginPage() {
       .then((response) => {
         storeToken(response.data.authToken);
         authenticateUser();
-        navigate("/courses/create");
+        navigate("/courses/add");
       })
       .catch((error) => {
         const message = error.response.data.errorMessage;
