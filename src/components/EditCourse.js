@@ -50,7 +50,7 @@ export default function EditCourse(props) {
 
     const storedToken = getToken();
     axios
-      .post(
+      .put(
         `${process.env.REACT_APP_API_URL}/courses/${courseId}`,
         courseDetails,
         {
@@ -61,6 +61,15 @@ export default function EditCourse(props) {
         props.updateCourses();
         navigate(`/courses/${courseId}`);
       });
+  };
+
+  const deleteProject = () => {
+    axios
+      .delete(`${process.env.REACT_APP_API_URL}/courses/${courseId}`)
+      .then(() => {
+        navigate("/courses/all");
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -92,6 +101,7 @@ export default function EditCourse(props) {
         <br />
         <button type="submit">Update</button>
       </form>
+      <button onClick={deleteProject}>Delete Course</button>
     </div>
   );
 }

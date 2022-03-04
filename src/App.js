@@ -3,6 +3,7 @@ import "./App.css";
 import { useContext, useEffect, useState } from "react";
 import { Route, Routes } from "react-router";
 import { AuthContext } from "./context/auth.context";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import CourseCreate from "./components/CourseCreate";
 import CourseDetails from "./components/CourseDetails";
@@ -21,6 +22,8 @@ function App() {
   const [coursesArr, setCoursesArr] = useState([]);
   const { isLoggedIn, getToken } = useContext(AuthContext);
 
+  const { courseId } = useParams;
+
   useEffect(() => {
     getCourses();
   }, [isLoggedIn]);
@@ -37,6 +40,24 @@ function App() {
       })
       .catch((e) => console.log("Error getting list of all projects", e));
   };
+
+  const getCourseDetails = () => {
+    const storedToken = getToken();
+
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/courses/${courseId}`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => {
+        const thisCourse = response.data;
+        setCoursesArr(thisCourse);
+      })
+      .catch((e) => console.log("Error getting this course", e));
+  };
+
+  useEffect(() => {
+    getCourseDetails();
+  }, []);
 
   return (
     <div className="App">
@@ -55,7 +76,14 @@ function App() {
           element={<CourseDetails courses={coursesArr} />}
         />
 
-        <Route path="/courses/edit/:courseId" element={<EditCourse />} />
+        <Route
+          path="/courses/edit/:courseId"
+          element={
+            <IsPrivate>
+              <EditCourse />
+            </IsPrivate>
+          }
+        />
 
         <Route
           path="/courses/add"

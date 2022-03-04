@@ -1,11 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import TopicCreate from "./TopicCreate";
 
 export default function CourseDetails(props) {
   const { courseId } = useParams();
   return (
     <div className="CourseDetails">
+      <TopicCreate
+        // updateCourseWithTopic={getCourseDetails}
+        courseId={courseId}
+      />
       {props.courses.map((course) => {
         return (
           <div className="course-card" key={course._id}>
