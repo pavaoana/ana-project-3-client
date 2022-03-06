@@ -58,14 +58,14 @@ function App() {
 
         <Route path="/courses/:courseId" element={<CourseDetails />} />
 
-        {/* <Route
+        <Route
           path="/courses/edit/:courseId"
           element={
             <IsPrivate>
               <EditCourse />
             </IsPrivate>
           }
-        /> */}
+        />
 
         <Route
           path="/courses/add"

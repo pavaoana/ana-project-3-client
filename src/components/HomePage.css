@@ -1,0 +1,52 @@
+.HomePage {
+  border-radius: 5px;
+  padding: 20px;
+  line-height: 2rem;
+  font-weight: normal;
+  color: white;
+  font-size: x-large;
+}
+
+h1 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-size: 7vw;
+  color: #4c70af;
+}
+
+.TitleSpan {
+  color: #d56423;
+}
+
+.Container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.Choose {
+  background-color: #d564237b;
+  width: 18vw;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-right: 1.5rem;
+  line-height: 2.5rem;
+}
+
+.Organization {
+  background-color: #d564237b;
+  width: 18vw;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-left: 1.5rem;
+  line-height: 2.5rem;
+}
+
+.Highlight {
+  font-weight: bold;
+  color: #4c70af;
+}
+
+a {
+  color: #d56423;
+}

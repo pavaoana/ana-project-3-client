@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import axios from "axios";
 import { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router";
@@ -10,32 +9,19 @@ export default function EditCourse(props) {
   const [description, setDescription] = useState(props.course.description);
   // const [topics, setTopics] = useState([]);
   // const [image, setImage] = useState(); // ???
-  const [location, setLocation] = useState("");
-  const [duration, setDuration] = useState("");
-  const [schedule, setSchedule] = useState();
-  const [preRequisites, setPreRequisites] = useState("");
-  const [cost, setCost] = useState(0);
-  const [link, setLink] = useState("");
+  const [location, setLocation] = useState(props.course.location);
+  const [duration, setDuration] = useState(props.course.duration);
+  const [schedule, setSchedule] = useState(props.course.schedule);
+  const [preRequisites, setPreRequisites] = useState(
+    props.course.preRequisites
+  );
+  const [cost, setCost] = useState(props.course.cost);
+  const [link, setLink] = useState(props.course.link);
 
   const { courseId } = useParams();
   const navigate = useNavigate();
   const { getToken } = useContext(AuthContext);
   const [successMsg, setSuccessMsg] = useState(null);
-
-  // useEffect(() => {
-  //   const storedToken = getToken();
-  //   axios
-  //     .put(`${process.env.REACT_APP_API_URL}/courses/edit/${courseId}`, {
-  //       headers: { Authorization: `Bearer ${storedToken}` },
-  //     })
-  //     .then((response) => {
-  //       const thisCourse = response.data;
-  //       setCourseName(thisCourse.courseName);
-  //       setDescription(thisCourse.description);
-  //       //add all other necessary fields
-  //     })
-  //     .catch((e) => console.log("An error occured while editing a course.", e));
-  // }, [courseId]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -63,24 +49,10 @@ export default function EditCourse(props) {
         }
       )
       .then((response) => {
-        //props.updateCourses();
         console.log("response.data", response.data);
         setSuccessMsg(response.data.successMessage);
         navigate(`/courses/${courseId}`);
       });
-  };
-
-  const deleteProject = () => {
-    const storedToken = getToken();
-
-    axios
-      .delete(`${process.env.REACT_APP_API_URL}/courses/delete/${courseId}`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
-      .then(() => {
-        navigate("/courses/all");
-      })
-      .catch((err) => console.log(err));
   };
 
   return (
@@ -158,9 +130,10 @@ export default function EditCourse(props) {
             </label>
             <br />
             <label>
-              Cost: <br />
+              Cost (Euros): <br />
               <input
                 type="number"
+                min={0}
                 required={true}
                 name="cost"
                 value={cost}
@@ -181,9 +154,6 @@ export default function EditCourse(props) {
             <br />
             <button type="submit">Update Course</button>
           </form>
-          <button className="deleteButton" onClick={deleteProject}>
-            Delete Course
-          </button>
         </div>
       )}
     </>

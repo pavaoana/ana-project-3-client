@@ -2,9 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function CoursesAll(props) {
+  function compareDates(a, b) {
+    const aCreatedDate = new Date(a.createdAt);
+    const bCreatedDate = new Date(b.createdAt);
+    if (aCreatedDate < bCreatedDate) return 1;
+    if (aCreatedDate > bCreatedDate) return -1;
+    return 0;
+  }
+
   return (
     <div className="AllCourses">
-      {props.courses.map((course) => {
+      {props.courses.sort(compareDates).map((course) => {
         return (
           <div className="course-card" key={course._id}>
             <div className="course-img">
@@ -12,6 +20,7 @@ export default function CoursesAll(props) {
             </div>
             <div className="course-details">
               <h3>{course.courseName}</h3>
+              <p>{course.author}</p>
               <p>{course.description}</p>
               {/* {course &&
                 course.topics.map((topic) => (
@@ -24,14 +33,8 @@ export default function CoursesAll(props) {
                 <>
                   <p>Location: {course.location}</p>
                   <p>Duration: {course.duration}</p>
-                  <p>Schedule: {course.schedule}</p>
-                  <p>Career Services Offered? {course.careerServices}</p>
-                  <p>A Job at the End? {course.jobGuaranteed}</p>
-                  <p>Pre-Requisites? {course.preRequisites}</p>
-                  <p>Price: {course.cost}</p>
                 </>
-              )} */}
-              /*{" "}
+              )} */}{" "}
               {/* <p>
                 Click{" "}
                 <a href={course.link} target="_blank">
@@ -42,7 +45,6 @@ export default function CoursesAll(props) {
               <Link to={`/courses/${course._id}`}>
                 <h3>See Details</h3>
               </Link>{" "}
-              */
             </div>
           </div>
         );

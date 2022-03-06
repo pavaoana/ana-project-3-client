@@ -128,10 +128,10 @@ export default function CourseCreate(props) {
         </label>
         <br />
         <label>
-          Cost: <br />
+          Cost (Euros): <br />
           <input
             type="number"
-            min="0"
+            min={0}
             required={true}
             placeholder="Free"
             name="cost"
