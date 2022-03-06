@@ -44,7 +44,9 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar />
+      <div>
+        <Navbar />
+      </div>
 
       <Routes>
         <Route path="/" element={<HomePage />} />

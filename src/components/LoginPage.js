@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import axios from "axios";
 
+import "./CourseCreate.css";
+
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -37,17 +39,18 @@ export default function LoginPage() {
 
   return (
     <div className="LoginPage">
-      <h4>Fill the form below to login:</h4>
+      <h3>Fill the form below to login:</h3>
 
       {message && <p className="error">{message}</p>}
 
       <form onSubmit={handleLoginSubmit}>
         <label>
-          Email:{" "}
+          Email:
+          <br />
           <input
             type="email"
             required="true"
-            placeholder="e.g.: google@google.com"
+            placeholder="google@google.com"
             name="email"
             value={email}
             onChange={handleEmail}
@@ -56,7 +59,8 @@ export default function LoginPage() {
         <br />
 
         <label>
-          Password:{" "}
+          Password:
+          <br />
           <input
             type="password"
             required="true"

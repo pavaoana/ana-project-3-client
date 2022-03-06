@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./CourseCreate.css";
 
 export default function SignupPage() {
   const [organizationName, setOrganizationName] = useState("");
@@ -34,15 +35,16 @@ export default function SignupPage() {
 
   return (
     <div className="SignupPage">
-      <h4>If you represent an Organization, you can register below:</h4>
+      <h3>If you represent an Organization, you can register below:</h3>
       {message && <p className="error">{message}</p>}
       <form onSubmit={handleSignupSubmit}>
         <label>
-          Name of Your Organization:{" "}
+          Name of Your Organization:
+          <br />
           <input
             type="text"
             required="true"
-            placeholder="e.g.: Google LLC"
+            placeholder="Google LLC"
             name="organizationName"
             value={organizationName}
             onChange={handleOrgName}
@@ -50,11 +52,12 @@ export default function SignupPage() {
         </label>{" "}
         <br />
         <label>
-          Email:{" "}
+          Email:
+          <br />
           <input
             type="email"
             required="true"
-            placeholder="e.g.: google@google.com"
+            placeholder="google@google.com"
             name="email"
             value={email}
             onChange={handleEmail}
@@ -62,7 +65,8 @@ export default function SignupPage() {
         </label>
         <br />
         <label>
-          Password:{" "}
+          Password:
+          <br />
           <input
             type="password"
             required="true"

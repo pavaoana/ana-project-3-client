@@ -3,6 +3,7 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { AuthContext } from "../context/auth.context";
+import "./CourseCreate.css";
 
 export default function EditCourse(props) {
   const [courseName, setCourseName] = useState(props.course.courseName);
@@ -85,10 +86,10 @@ export default function EditCourse(props) {
   return (
     <>
       {successMsg ? (
-        <h1>{successMsg}</h1>
+        <h3>{successMsg}</h3>
       ) : (
         <div className="EditCourse">
-          <h4>To update the selected course, change the form below:</h4>
+          <h3>To update the selected course, change the form below:</h3>
 
           <form onSubmit={handleSubmit}>
             <label>
@@ -180,7 +181,9 @@ export default function EditCourse(props) {
             <br />
             <button type="submit">Update Course</button>
           </form>
-          <button onClick={deleteProject}>Delete Course</button>
+          <button className="deleteButton" onClick={deleteProject}>
+            Delete Course
+          </button>
         </div>
       )}
     </>

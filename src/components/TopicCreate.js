@@ -3,6 +3,7 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../context/auth.context";
+import "./CourseCreate.css";
 
 export default function TopicCreate(props) {
   const [topicName, setTopicName] = useState("");
@@ -69,7 +70,7 @@ export default function TopicCreate(props) {
           />
         </label>
         <br />
-        <button type="submit">Create</button>
+        <button type="submit">Create a Topic</button>
       </form>
     </div>
   );

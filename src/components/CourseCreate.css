@@ -1,0 +1,51 @@
+input[type=text],
+textarea[type=text],
+input[type=link],
+input[type=number],
+input[type=email],
+input[type=password],
+select {
+  width: 30rem;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button[type=submit],
+.deleteButton {
+  width: 20rem;
+  background-color: #4c70af;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.deleteButton {
+  background-color: #d56423;
+}
+
+button[type=submit]:hover {
+  background-color: #4c70afe1;
+}
+
+.deleteButton:hover {
+  background-color: #d56423e3;
+}
+
+.CreateCourse,
+.EditCourse,
+.CreateTopic,
+.LoginPage,
+.SignupPage {
+  border-radius: 5px;
+  padding: 20px;
+  font-weight: bold;
+  line-height: 2rem;
+  color: rgb(68, 66, 66);
+}

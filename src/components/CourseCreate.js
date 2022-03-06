@@ -3,6 +3,7 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../context/auth.context";
+import "./CourseCreate.css";
 
 export default function CourseCreate(props) {
   const [courseName, setCourseName] = useState("");
@@ -130,6 +131,7 @@ export default function CourseCreate(props) {
           Cost: <br />
           <input
             type="number"
+            min="0"
             required={true}
             placeholder="Free"
             name="cost"
