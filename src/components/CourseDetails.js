@@ -9,9 +9,14 @@ export default function CourseDetails(props) {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
   const [course, setCourse] = useState(null);
   const [showEditForm, setShowEditForm] = useState(false);
-  const { courseId } = useParams();
   const navigate = useNavigate();
   const { getToken } = useContext(AuthContext);
+  const { courseId } = useParams();
+  let courseDetails;
+  const { courses } = props;
+  if (courses) {
+    courseDetails = courses.find((course) => course._id === courseId);
+  }
 
   const getCourse = () => {
     axios
@@ -52,13 +57,30 @@ export default function CourseDetails(props) {
         <div className="CourseDetails">
           {course && (
             <>
+              {/* <div className="course-img">
+              <img src={course.image} alt={course.courseName} />
+            </div> */}
               <h3>{course.courseName}</h3>
-              <p>{course.author}</p>
+              {course.author && (
+                <>
+                  <p>{course.author}</p>
+                </>
+              )}
               <p>{course.description}</p>
+              {/* {course &&
+                course.topics.map((topic) => ( return
+                  <li className="TopicCard inCourse" key={topic._id}>
+                    <p>{props.topics}</p> OU topics.title?
+                  </li>
+                ))} */}
               <p>{course.location}</p>
               <p>{course.duration}</p>
               <p>{course.schedule}</p>
-              <p>{course.preRequisites}</p>
+              {course.preRequisites && (
+                <>
+                  <p>{course.preRequisites}</p>
+                </>
+              )}
               {course.cost === 0 ? <p>Free</p> : <p>€{course.cost}</p>}
               <p>
                 Click{" "}
@@ -74,28 +96,6 @@ export default function CourseDetails(props) {
           updateCourseWithTopic={getCourseDetails}
          courseId={courseId}
        /> */}
-
-          <div className="course-card">
-            {/* <div className="course-img">
-              <img src={course.image} alt={course.courseName} />
-            </div> */}
-            <div className="course-details">
-              {/* {course &&
-                course.topics.map((topic) => (
-                  <li className="TopicCard inCourse" key={topic._id}>
-                    <h4>{topic.title}</h4>
-                    <p>{topic.description}</p>
-                  </li>
-                ))}
-              <p>
-                Click{" "}
-                <a href={course.link} target="_blank">
-                  here
-                </a>{" "}
-                if you want to know more.
-              </p> */}
-            </div>
-          </div>
 
           {user && (
             <>

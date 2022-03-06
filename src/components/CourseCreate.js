@@ -16,6 +16,7 @@ export default function CourseCreate(props) {
   const [preRequisites, setPreRequisites] = useState("");
   const [cost, setCost] = useState(0);
   const [link, setLink] = useState("");
+  const [author, setAuthor] = useState(); // need to change this
 
   const navigate = useNavigate();
   const { getToken } = useContext(AuthContext);
@@ -34,6 +35,7 @@ export default function CourseCreate(props) {
       preRequisites,
       cost,
       link,
+      author,
     };
 
     const storedToken = getToken();
