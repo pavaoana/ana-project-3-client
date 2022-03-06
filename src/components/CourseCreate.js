@@ -9,14 +9,12 @@ export default function CourseCreate(props) {
   const [description, setDescription] = useState("");
   // const [topics, setTopics] = useState([]);
   // const [image, setImage] = useState(); // ???
-  // const [location, setLocation] = useState("");
-  // const [duration, setDuration] = useState("");
-  // const [schedule, setSchedule] = useState(); // ??
-  // const [careerServices, setCareerServices] = useState(); // ??
-  // const [jobGuaranteed, setJobGuaranteed] = useState(); // ??
-  // const [preRequisites, setPreRequisites] = useState("");
-  // const [cost, setCost] = useState(0);
-  // const [link, setLink] = useState("");
+  const [location, setLocation] = useState("");
+  const [duration, setDuration] = useState("");
+  const [schedule, setSchedule] = useState();
+  const [preRequisites, setPreRequisites] = useState("");
+  const [cost, setCost] = useState(0);
+  const [link, setLink] = useState("");
 
   const navigate = useNavigate();
   const { getToken } = useContext(AuthContext);
@@ -28,12 +26,14 @@ export default function CourseCreate(props) {
       courseName,
       description,
       // topics,
-      // location,
-      // duration,
-      // preRequisites,
-      // cost,
-      // link,
-    }; // add the ones that were commented: image, schedule, careerServices, jobGuaranteed
+      // image,
+      location,
+      duration,
+      schedule,
+      preRequisites,
+      cost,
+      link,
+    };
 
     const storedToken = getToken();
 
@@ -56,11 +56,11 @@ export default function CourseCreate(props) {
 
       <form onSubmit={handleSubmit}>
         <label>
-          Course Name:{" "}
+          Course Name: <br />
           <input
             type="text"
             required={true}
-            placeholder="e.g.: Data Science Bootcamp"
+            placeholder="Data Science Bootcamp"
             name="courseName"
             value={courseName}
             onChange={(e) => setCourseName(e.target.value)}
@@ -68,18 +68,89 @@ export default function CourseCreate(props) {
         </label>
         <br />
         <label>
-          Description:{" "}
+          Description: <br />
           <textarea
             type="text"
             required={true}
-            placeholder="e.g.: Our Data Science course will transform you into a Data Scientist in a matter of weeks. You will analyse data to make decisions, implement Machine Learning models and build a practical data application."
+            placeholder="Our Data Science course will transform you into a Data Scientist in a matter of weeks. You will analyse data to make decisions, implement Machine Learning models and build a practical data application."
             name="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
         </label>
         <br />
-        <button type="submit">Publish</button>
+        <label>
+          Location: <br />
+          <input
+            type="text"
+            required={true}
+            placeholder="Lisbon"
+            name="location"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+          />
+        </label>
+        <br />
+        <label>
+          Duration: <br />
+          <input
+            type="text"
+            required={true}
+            placeholder="6 months"
+            name="curation"
+            value={duration}
+            onChange={(e) => setDuration(e.target.value)}
+          />
+        </label>
+        <br />
+        <label>
+          Schedule: <br />
+          <input
+            type="text"
+            required={true}
+            placeholder="Part-Time"
+            name="schedule"
+            value={schedule}
+            onChange={(e) => setSchedule(e.target.value)}
+          />
+        </label>
+        <br />
+        <label>
+          Pre-Requisites: <br />
+          <input
+            type="text"
+            placeholder="None"
+            name="preRequisites"
+            value={preRequisites}
+            onChange={(e) => setPreRequisites(e.target.value)}
+          />
+        </label>
+        <br />
+        <label>
+          Cost: <br />
+          <input
+            type="number"
+            required={true}
+            placeholder="Free"
+            name="cost"
+            value={cost}
+            onChange={(e) => setCost(e.target.value)}
+          />
+        </label>
+        <br />
+        <label>
+          Link: <br />
+          <input
+            type="link"
+            required={true}
+            placeholder="http://www.google.com/courses/data-analytics"
+            name="link"
+            value={link}
+            onChange={(e) => setLink(e.target.value)}
+          />
+        </label>
+        <br />
+        <button type="submit">Publish Your Course</button>
       </form>
     </div>
   );

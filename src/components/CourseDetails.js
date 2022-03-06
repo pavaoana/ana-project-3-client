@@ -2,9 +2,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
+import EditCourse from "./EditCourse";
 
 export default function CourseDetails(props) {
   const [course, setCourse] = useState(null);
+  const [showEditForm, setShowEditForm] = useState(false);
   const { courseId } = useParams();
 
   const getCourse = () => {
@@ -21,26 +23,46 @@ export default function CourseDetails(props) {
     getCourse();
   }, []);
 
-  return (
-    <div className="CourseDetails">
-      {course && (
-        <>
-          <h3>{course.courseName}</h3>
-          <p>{course.description}</p>
-        </>
-      )}
+  const handleEditForm = () => {
+    setShowEditForm(true);
+  };
 
-      {/* <TopicCreate 
+  return (
+    <>
+      {showEditForm ? (
+        <EditCourse course={course} />
+      ) : (
+        <div className="CourseDetails">
+          {course && (
+            <>
+              <h3>{course.courseName}</h3>
+              <p>{course.description}</p>
+              <p>{course.location}</p>
+              <p>{course.duration}</p>
+              <p>{course.schedule}</p>
+              <p>{course.preRequisites}</p>
+              <p>{course.cost}</p>
+              <p>
+                Click{" "}
+                <a href={course.link} target="_blank">
+                  here
+                </a>{" "}
+                if you want to know more.
+              </p>{" "}
+            </>
+          )}
+
+          {/* <TopicCreate 
           updateCourseWithTopic={getCourseDetails}
          courseId={courseId}
        /> */}
 
-      <div className="course-card">
-        {/* <div className="course-img">
+          <div className="course-card">
+            {/* <div className="course-img">
               <img src={course.image} alt={course.courseName} />
             </div> */}
-        <div className="course-details">
-          {/* {course &&
+            <div className="course-details">
+              {/* {course &&
                 course.topics.map((topic) => (
                   <li className="TopicCard inCourse" key={topic._id}>
                     <h4>{topic.title}</h4>
@@ -54,15 +76,18 @@ export default function CourseDetails(props) {
                 </a>{" "}
                 if you want to know more.
               </p> */}
-        </div>
-      </div>
+            </div>
+          </div>
 
-      <Link to={`/courses/edit/${courseId}`}>
-        <button>Edit Course</button>
-      </Link>
-      <Link to="/courses/all">
-        <button>Go back to all courses</button>
-      </Link>
-    </div>
+          {/* <Link to={`/courses/edit/${courseId}`}> */}
+          <button onClick={handleEditForm}>Edit Course</button>
+          {/* </Link> */}
+
+          <Link to="/courses/all">
+            <button>Go back to all courses</button>
+          </Link>
+        </div>
+      )}
+    </>
   );
 }

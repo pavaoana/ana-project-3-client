@@ -46,11 +46,11 @@ export default function TopicCreate(props) {
 
       <form onSubmit={handleSubmit}>
         <label>
-          Topic Name:{" "}
+          Topic Name: <br />
           <input
             type="text"
             required={true}
-            placeholder="e.g.: HTML"
+            placeholder="HTML"
             name="topicName"
             value={topicName}
             onChange={(e) => setTopicName(e.target.value)}
@@ -58,11 +58,11 @@ export default function TopicCreate(props) {
         </label>
         <br />
         <label>
-          Description:{" "}
+          Description: <br />
           <textarea
             type="text"
             required={true}
-            placeholder="e.g.: HTML (Hypertext Markup Language) allows us to..."
+            placeholder="HTML (Hypertext Markup Language) allows us to..."
             name="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
