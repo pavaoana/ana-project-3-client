@@ -1,6 +1,7 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/auth.context";
 import axios from "axios";
 import "./CourseCreate.css";
 
@@ -9,7 +10,7 @@ export default function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState(undefined);
-
+  const { storeToken, authenticateUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleOrgName = (e) => setOrganizationName(e.target.value);
@@ -23,8 +24,11 @@ export default function SignupPage() {
 
     axios
       .post(`${process.env.REACT_APP_API_URL}/auth/signup`, orgDetails)
-      .then(() => {
+      .then((response) => {
         navigate("/login");
+        storeToken(response.data.authToken);
+        authenticateUser();
+        navigate("/courses/add");
       })
       .catch((error) => {
         const message = error.response.data.errorMessage;

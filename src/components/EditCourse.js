@@ -7,7 +7,7 @@ import "./CourseCreate.css";
 export default function EditCourse(props) {
   const [courseName, setCourseName] = useState(props.course.courseName);
   const [description, setDescription] = useState(props.course.description);
-  // const [topics, setTopics] = useState([]);
+  const [topics, setTopics] = useState([]);
   // const [image, setImage] = useState(); // ???
   const [location, setLocation] = useState(props.course.location);
   const [duration, setDuration] = useState(props.course.duration);
@@ -29,7 +29,7 @@ export default function EditCourse(props) {
     const courseDetails = {
       courseName,
       description,
-      // topics,
+      topics,
       // image,
       location,
       duration,
@@ -87,6 +87,16 @@ export default function EditCourse(props) {
             </label>
             <br />
             <label>
+              Topics: <br />
+              <select name="topics">
+                <option
+                  value={topics}
+                  onChange={(e) => setTopics(e.target.value)}
+                ></option>
+              </select>
+            </label>
+            <br />
+            <label>
               Location: <br />
               <input
                 type="text"
@@ -130,7 +140,7 @@ export default function EditCourse(props) {
             </label>
             <br />
             <label>
-              Cost (Euros): <br />
+              Price (in Euros): <br />
               <input
                 type="number"
                 min={0}

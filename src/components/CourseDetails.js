@@ -67,12 +67,12 @@ export default function CourseDetails(props) {
                 </>
               )}
               <p>{course.description}</p>
-              {/* {course &&
-                course.topics.map((topic) => ( return
-                  <li className="TopicCard inCourse" key={topic._id}>
-                    <p>{props.topics}</p> OU topics.title?
+              {course &&
+                course.topics.map((topic) => (
+                  <li className="TopicCard inCourse" key={course.topics._id}>
+                    <p>{course.topics.topicName}</p>
                   </li>
-                ))} */}
+                ))}
               <p>{course.location}</p>
               <p>{course.duration}</p>
               <p>{course.schedule}</p>

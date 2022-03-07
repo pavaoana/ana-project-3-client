@@ -8,7 +8,7 @@ import "./CourseCreate.css";
 export default function CourseCreate(props) {
   const [courseName, setCourseName] = useState("");
   const [description, setDescription] = useState("");
-  // const [topics, setTopics] = useState([]);
+  const [topics, setTopics] = useState([]);
   // const [image, setImage] = useState(); // ???
   const [location, setLocation] = useState("");
   const [duration, setDuration] = useState("");
@@ -27,7 +27,7 @@ export default function CourseCreate(props) {
     const courseDetails = {
       courseName,
       description,
-      // topics,
+      topics,
       // image,
       location,
       duration,
@@ -83,6 +83,13 @@ export default function CourseCreate(props) {
         </label>
         <br />
         <label>
+          Topics: <br />
+          <select name="topics">
+            <option value={topics}></option>
+          </select>
+        </label>
+        <br />
+        <label>
           Location: <br />
           <input
             type="text"
@@ -130,7 +137,7 @@ export default function CourseCreate(props) {
         </label>
         <br />
         <label>
-          Cost (Euros): <br />
+          Price (in Euros): <br />
           <input
             type="number"
             min={0}
