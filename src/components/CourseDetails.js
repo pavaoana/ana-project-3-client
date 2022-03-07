@@ -6,7 +6,8 @@ import EditCourse from "./EditCourse";
 import { AuthContext } from "../context/auth.context";
 
 export default function CourseDetails(props) {
-  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+  console.log("props in the begining", props);
+  const { isLoggedIn, user } = useContext(AuthContext);
   const [course, setCourse] = useState(null);
   const [showEditForm, setShowEditForm] = useState(false);
   const navigate = useNavigate();
@@ -14,9 +15,12 @@ export default function CourseDetails(props) {
   const { courseId } = useParams();
   let courseDetails;
   const { courses } = props;
+  console.log("courses:", courses);
   if (courses) {
     courseDetails = courses.find((course) => course._id === courseId);
   }
+  console.log("courses2:", courses);
+  console.log("course", course);
 
   const getCourse = () => {
     axios
@@ -69,8 +73,10 @@ export default function CourseDetails(props) {
               <p>{course.description}</p>
               {course &&
                 course.topics.map((topic) => (
-                  <li className="TopicCard inCourse" key={course.topics._id}>
-                    <p>{course.topics.topicName}</p>
+                  <li className="TopicCard inCourse" key={topic._id}>
+                    <Link to={`/topics/${topic._id}`} target="_blank">
+                      {topic.topicName}{" "}
+                    </Link>
                   </li>
                 ))}
               <p>{course.location}</p>
@@ -91,11 +97,6 @@ export default function CourseDetails(props) {
               </p>{" "}
             </>
           )}
-
-          {/* <TopicCreate 
-          updateCourseWithTopic={getCourseDetails}
-         courseId={courseId}
-       /> */}
 
           {user && (
             <>

@@ -10,20 +10,29 @@ export default function HomePage() {
           New Career <span className="TitleSpan">Now</span>
         </h1>
       </div>
+      <div className="row-mother">
+        <div class="row">
+          <div class="column">
+            <div class="card">
+              <h3>
+                <span className="Highlight">Looking for a new career?</span>
+              </h3>
+              <p>
+                Choose a course <Link to={"/courses/all"}>here</Link>.
+              </p>
+            </div>
+          </div>
 
-      <div className="Container">
-        <div className="Choose">
-          <p>
-            <span className="Highlight">Looking for a new career?</span> Choose
-            a course <Link to={"/courses/all"}>here</Link>.
-          </p>
-        </div>
-        <div className="Organization">
-          <p>
-            If you're an <span className="Highlight">Organization</span>,{" "}
-            <Link to={"/signup"}> register</Link> or{" "}
-            <Link to={"/login"}>login</Link> to publish your courses.
-          </p>
+          <div class="column">
+            <div class="card">
+              <h3>
+                Are you an <span className="Highlight">Organization</span>?
+              </h3>
+              <p>
+                <Link to={"/signup"}> Register</Link> to publish your courses.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

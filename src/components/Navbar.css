@@ -1,6 +1,42 @@
-.Navbar {
-  border-radius: 5px;
-  padding: 10px;
-  line-height: 2rem;
-  color: rgb(68, 66, 66);
+nav.navigation {
+  position: relative;
+  height: 50px;
+  background-color: #4c70af23;
+  z-index: 2;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  border-radius: .5rem;
+}
+
+ul.nav-menu,
+ul.nav-menu li,
+ul.nav-menu li a {
+  float: center;
+}
+
+ul.nav-menu {
+  padding-left: 10px;
+}
+
+ul.nav-menu li a {
+  height: 50px;
+  line-height: 50px;
+  padding: 0 10px;
+  color: #4c70af;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+ul.nav-menu li a:hover {
+  color: rgba(68, 66, 66, 0.409);
+}
+
+.LogoutBtn {
+  width: 4rem;
+  background-color: #4c70af;
+  color: white;
+  font-weight: bold;
+  padding: 4px 4px;
+  border: none;
+  border-radius: 4px;
 }

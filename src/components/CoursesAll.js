@@ -15,13 +15,13 @@ export default function CoursesAll(props) {
       {props.courses.sort(compareDates).map((course) => {
         return (
           <div className="course-card" key={course._id}>
-            <div className="course-img">
+            {/* <div className="course-img">
               <img src={course.image} alt={course.courseName} />
-            </div>
+            </div> */}
             <div className="course-details">
               <h3>{course.courseName}</h3>
               <p>{course.author}</p>
-              <p>{course.cost}</p>
+              {course.cost === 0 ? <p>Free</p> : <p>€{course.cost}</p>}
               <Link to={`/courses/${course._id}`}>
                 <h3>See Details</h3>
               </Link>{" "}

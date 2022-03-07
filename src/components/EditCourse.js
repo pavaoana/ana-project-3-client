@@ -5,9 +5,11 @@ import { AuthContext } from "../context/auth.context";
 import "./CourseCreate.css";
 
 export default function EditCourse(props) {
+  const { user } = useContext(AuthContext);
+  console.log("user:", user);
   const [courseName, setCourseName] = useState(props.course.courseName);
   const [description, setDescription] = useState(props.course.description);
-  const [topics, setTopics] = useState([]);
+  //const [topics, setTopics] = useState([props.course.topics]);
   // const [image, setImage] = useState(); // ???
   const [location, setLocation] = useState(props.course.location);
   const [duration, setDuration] = useState(props.course.duration);
@@ -23,13 +25,15 @@ export default function EditCourse(props) {
   const { getToken } = useContext(AuthContext);
   const [successMsg, setSuccessMsg] = useState(null);
 
+  const [selectedTopics, setSelectedTopics] = useState({}); //plain object as state
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const courseDetails = {
       courseName,
       description,
-      topics,
+      selectedTopics,
       // image,
       location,
       duration,
@@ -86,7 +90,24 @@ export default function EditCourse(props) {
               />
             </label>
             <br />
-            <label>
+            {/* 
+            {props.topics.map((topic) => (
+              <>
+                <label key={topic._id}>
+                  {topic.topicName}
+
+                  <input
+                    type="checkbox"
+                    name={topic._id}
+                    value={selectedTopics[topic._id]}
+                    onChange={(e) => setTopics(e.target.value)}
+                  />
+                </label>
+              </>
+            ))} */}
+
+            <br />
+            {/* <label>
               Topics: <br />
               <select name="topics">
                 <option
@@ -95,7 +116,7 @@ export default function EditCourse(props) {
                 ></option>
               </select>
             </label>
-            <br />
+            <br /> */}
             <label>
               Location: <br />
               <input

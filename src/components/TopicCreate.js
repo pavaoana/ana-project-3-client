@@ -8,7 +8,7 @@ import "./CourseCreate.css";
 export default function TopicCreate(props) {
   const [topicName, setTopicName] = useState("");
   const [description, setDescription] = useState("");
-  const [message, setMessage] = useState(undefined);
+  // const [message, setMessage] = useState(undefined);
 
   const navigate = useNavigate();
   const { getToken } = useContext(AuthContext);
@@ -16,12 +16,9 @@ export default function TopicCreate(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const { projectId } = props;
-
     const topicDetails = {
       topicName,
       description,
-      //projectId,
     };
 
     const storedToken = getToken();
@@ -37,7 +34,7 @@ export default function TopicCreate(props) {
         //props.updateCourseWithTopic();
       })
       .catch((e) =>
-        console.log("An error occured while creating a new course.", e)
+        console.log("An error occured while creating a new topic.", e)
       );
   };
 

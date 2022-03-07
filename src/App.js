@@ -16,16 +16,17 @@ import Navbar from "./components/Navbar";
 import SignupPage from "./components/SignupPage";
 import TopicCreate from "./components/TopicCreate";
 import TopicDetails from "./components/TopicDetails";
+import TopicsAll from "./components/TopicsAll";
 import EditCourse from "./components/EditCourse";
 
 function App() {
   const [coursesArr, setCoursesArr] = useState([]);
+  const [topicsArr, setTopicsArr] = useState([]);
   const { isLoggedIn, getToken } = useContext(AuthContext);
-
-  const { courseId } = useParams;
 
   useEffect(() => {
     getCourses();
+    getAllTopics();
   }, [isLoggedIn]);
 
   const getCourses = () => {
@@ -36,8 +37,22 @@ function App() {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        console.log("response.data:", response.data);
+        console.log("response.data courses:", response.data);
         setCoursesArr(response.data);
+      })
+      .catch((e) => console.log("Error getting list of all courses", e));
+  };
+
+  const getAllTopics = () => {
+    const storedToken = getToken();
+
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/topics/all`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => {
+        console.log("response.data topics:", response.data);
+        setTopicsArr(response.data);
       })
       .catch((e) => console.log("Error getting list of all courses", e));
   };
@@ -62,7 +77,7 @@ function App() {
           path="/courses/edit/:courseId"
           element={
             <IsPrivate>
-              <EditCourse />
+              <EditCourse topicsArray={topicsArr} />
             </IsPrivate>
           }
         />
@@ -71,12 +86,18 @@ function App() {
           path="/courses/add"
           element={
             <IsPrivate>
-              <CourseCreate updateCourses={getCourses} />
+              <CourseCreate
+                updateCourses={getCourses}
+                topicsArray={topicsArr}
+              />
             </IsPrivate>
           }
         />
 
-        <Route path="/topics/:topicId" element={<TopicDetails />} />
+        <Route
+          path="/topics/:topicId"
+          element={<TopicDetails topicsArray={topicsArr} />}
+        />
 
         <Route
           path="/topics/add"
@@ -86,6 +107,10 @@ function App() {
             </IsPrivate>
           }
         />
+
+        <Route path="/topics/all" element={<TopicsAll topics={topicsArr} />} />
+
+        <Route path="/topics/:topicId" element={<TopicDetails />} />
 
         <Route
           path="/signup"

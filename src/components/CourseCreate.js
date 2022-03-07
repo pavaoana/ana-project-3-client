@@ -6,9 +6,20 @@ import { AuthContext } from "../context/auth.context";
 import "./CourseCreate.css";
 
 export default function CourseCreate(props) {
+  console.log("props:", props);
   const [courseName, setCourseName] = useState("");
   const [description, setDescription] = useState("");
-  const [topics, setTopics] = useState([]);
+
+  const [selectedTopics, setSelectedTopics] = useState({}); //plain object as state
+
+  const handleChange = (event) => {
+    // updating an object instead of a Map
+    setSelectedTopics({
+      ...selectedTopics,
+      [event.target.name]: event.target.checked,
+    });
+  };
+
   // const [image, setImage] = useState(); // ???
   const [location, setLocation] = useState("");
   const [duration, setDuration] = useState("");
@@ -27,7 +38,7 @@ export default function CourseCreate(props) {
     const courseDetails = {
       courseName,
       description,
-      topics,
+      selectedTopics,
       // image,
       location,
       duration,
@@ -47,6 +58,7 @@ export default function CourseCreate(props) {
       .then(() => {
         props.updateCourses();
         navigate("/courses/all");
+        window.scrollTo(0, 0);
       })
       .catch((e) =>
         console.log("An error occured while creating a new course.", e)
@@ -82,12 +94,21 @@ export default function CourseCreate(props) {
           />
         </label>
         <br />
-        <label>
-          Topics: <br />
-          <select name="topics">
-            <option value={topics}></option>
-          </select>
-        </label>
+        <label>Topics:</label> <br />
+        <div className="TopicsChecklistDiv">
+          {props.topicsArray.map((topic) => (
+            <label className="TopicsChecklist" key={topic._id}>
+              {topic.topicName}
+
+              <input
+                type="checkbox"
+                name={topic._id}
+                value={selectedTopics[topic._id]}
+                onChange={handleChange}
+              />
+            </label>
+          ))}
+        </div>
         <br />
         <label>
           Location: <br />
