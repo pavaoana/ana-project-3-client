@@ -74,9 +74,7 @@ export default function CourseDetails(props) {
               {course &&
                 course.topics.map((topic) => (
                   <li className="TopicCard inCourse" key={topic._id}>
-                    <Link to={`/topics/${topic._id}`} target="_blank">
-                      {topic.topicName}{" "}
-                    </Link>
+                    <Link to={`/topics/${topic._id}`}>{topic.topicName} </Link>
                   </li>
                 ))}
               <p>{course.location}</p>
