@@ -9,7 +9,7 @@ export default function TopicDetails(props) {
   const { topicId } = useParams();
   console.log("topicId");
   // let topicDetails;
-  // const { topics } = props; // topics is undefined! - why??
+  // const { topics } = props;
   // console.log("topics + topicId", topics, topicId);
   // if (topics) {
   //   topicDetails = topics.find(
