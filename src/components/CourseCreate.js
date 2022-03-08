@@ -6,7 +6,6 @@ import { AuthContext } from "../context/auth.context";
 import "./CourseCreate.css";
 
 export default function CourseCreate(props) {
-  console.log("props:", props);
   const [courseName, setCourseName] = useState("");
   const [description, setDescription] = useState("");
 
@@ -63,11 +62,15 @@ export default function CourseCreate(props) {
       .catch((e) =>
         console.log("An error occured while creating a new course.", e)
       );
+
+    const orderTopics = function order(a, b) {
+      return a < b ? -1 : a > b ? 1 : 0;
+    };
   };
 
   return (
     <div className="CreateCourse">
-      <h3>Fill the form below to publish the details of a new course:</h3>
+      <h5>Publish the details of a new course below:</h5>
 
       <form onSubmit={handleSubmit}>
         <label>
@@ -96,18 +99,20 @@ export default function CourseCreate(props) {
         <br />
         <label>Topics:</label> <br />
         <div className="TopicsChecklistDiv">
-          {props.topicsArray.map((topic) => (
-            <label className="TopicsChecklist" key={topic._id}>
-              {topic.topicName}
+          {props.topicsArray
+            .map((topic) => (
+              <label className="TopicsChecklist" key={topic._id}>
+                {topic.topicName}
 
-              <input
-                type="checkbox"
-                name={topic._id}
-                value={selectedTopics[topic._id]}
-                onChange={handleChange}
-              />
-            </label>
-          ))}
+                <input
+                  type="checkbox"
+                  name={topic._id}
+                  value={selectedTopics[topic._id]}
+                  onChange={handleChange}
+                />
+              </label>
+            ))
+            .sort()}
         </div>
         <br />
         <label>

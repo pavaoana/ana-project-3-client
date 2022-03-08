@@ -1,0 +1,36 @@
+.space-above {
+  padding-top: 8rem;
+}
+
+h5 {
+  padding: 0;
+  margin: 0;
+}
+
+.card {
+  margin-bottom: 2rem;
+}
+
+.card-link {
+  color: #d56423e3;
+  background-color: #d564231e;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.card-link:hover {
+  color: #4c70af;
+}
+
+.money-bold {
+  font-weight: bold;
+}
+
+.name-org {
+  color: #4c70af;
+  font-weight: bold;
+}
+
+.h4-title-course {
+  font-weight: bold;
+}

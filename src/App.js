@@ -37,7 +37,6 @@ function App() {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        console.log("response.data courses:", response.data);
         setCoursesArr(response.data);
       })
       .catch((e) => console.log("Error getting list of all courses", e));
@@ -51,7 +50,6 @@ function App() {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        console.log("response.data topics:", response.data);
         setTopicsArr(response.data);
       })
       .catch((e) => console.log("Error getting list of all courses", e));

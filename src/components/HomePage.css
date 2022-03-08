@@ -1,3 +1,8 @@
+* {
+  color: rgb(68, 66, 66);
+  ;
+}
+
 .HomePage {
   border-radius: 5px;
   padding: 20px;
@@ -8,28 +13,16 @@
 }
 
 h1 {
-  padding-top: 3rem;
+  padding-top: 10rem;
   padding-bottom: 1rem;
   font-size: 7vw;
   color: #4c70af;
+  font-weight: 800;
 }
 
-.TitleSpan {
+.TitleSpan,
+.orange-link {
   color: #d56423;
-}
-
-.Organization {
-  background-color: #d564237b;
-  width: 18vw;
-  border-radius: 1rem;
-  padding: 1rem;
-  margin-left: 1.5rem;
-  line-height: 2.5rem;
-}
-
-.Highlight {
-  font-weight: bold;
-  color: #4c70af;
 }
 
 a {
@@ -59,29 +52,8 @@ body {
   width: 70%;
 }
 
-.row-mother {
-  text-align: center;
-  margin: 0 auto center;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Responsive columns */
-@media screen and (max-width: 800px) {
-  .column {
-    width: 100%;
-    display: block;
-    margin-bottom: 20px;
-  }
-}
-
 /* Style the counter cards */
-.card {
+.border-orange {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 16px;
   text-align: center;

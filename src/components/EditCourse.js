@@ -53,7 +53,6 @@ export default function EditCourse(props) {
         }
       )
       .then((response) => {
-        console.log("response.data", response.data);
         setSuccessMsg(response.data.successMessage);
         navigate(`/courses/${courseId}`);
       });
@@ -65,7 +64,7 @@ export default function EditCourse(props) {
         <h3>{successMsg}</h3>
       ) : (
         <div className="EditCourse">
-          <h3>To update the selected course, change the form below:</h3>
+          <h5>To update the selected course, change the form below:</h5>
 
           <form onSubmit={handleSubmit}>
             <label>

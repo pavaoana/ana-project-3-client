@@ -14,7 +14,10 @@ li {
   display: inline;
 }
 
-h3 {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+.SignupPage,
+.LoginPage,
+.CreateCourse,
+.CreateTopic {
+  margin-top: 7rem;
+  font-weight: bold;
 }

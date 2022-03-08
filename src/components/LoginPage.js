@@ -5,6 +5,7 @@ import { AuthContext } from "../context/auth.context";
 import axios from "axios";
 
 import "./CourseCreate.css";
+import "./Login.css";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -39,11 +40,11 @@ export default function LoginPage() {
 
   return (
     <div className="LoginPage">
-      <h3>Fill the form below to login:</h3>
+      <h5>Fill the form below to login:</h5>
 
       {message && <p className="error">{message}</p>}
 
-      <form onSubmit={handleLoginSubmit}>
+      <form onSubmit={handleLoginSubmit} className="padding-form">
         <label>
           Email:
           <br />
@@ -76,7 +77,10 @@ export default function LoginPage() {
 
       <p>
         If you don't have an account yet,{" "}
-        <Link to={"/signup"}>register here</Link>.
+        <Link class="orange-link" to={"/signup"}>
+          register here
+        </Link>
+        .
       </p>
     </div>
   );

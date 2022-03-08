@@ -40,7 +40,7 @@ export default function TopicCreate(props) {
 
   return (
     <div className="CreateTopic">
-      <h3>Fill the form below to create a new topic:</h3>
+      <h5>Create a new topic below:</h5>
 
       <form onSubmit={handleSubmit}>
         <label>

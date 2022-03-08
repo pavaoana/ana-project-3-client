@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./CoursesAll.css";
 
 export default function CoursesAll(props) {
   function compareDates(a, b) {
@@ -11,24 +12,33 @@ export default function CoursesAll(props) {
   }
 
   return (
-    <div className="AllCourses">
-      {props.courses.sort(compareDates).map((course) => {
-        return (
-          <div className="course-card" key={course._id}>
-            {/* <div className="course-img">
-              <img src={course.image} alt={course.courseName} />
-            </div> */}
-            <div className="course-details">
-              <h3>{course.courseName}</h3>
-              <p>{course.author}</p>
-              {course.cost === 0 ? <p>Free</p> : <p>€{course.cost}</p>}
-              <Link to={`/courses/${course._id}`}>
-                <h3>See Details</h3>
-              </Link>{" "}
+    <>
+      <div class="row space-above">
+        {props.courses.sort(compareDates).map((course) => {
+          return (
+            <div class="col-sm-4 row">
+              <div class="card">
+                <div class="card-body" key={course._id}>
+                  <h4 class="card-title h4-title-course">
+                    {course.courseName}
+                  </h4>
+                  <p class="card-text name-org">
+                    NAME OF ORGANIZATION GOES HERE
+                  </p>
+                  {course.cost === 0 ? (
+                    <p class="money-bold">Free!</p>
+                  ) : (
+                    <p class="money-bold">€{course.cost}</p>
+                  )}
+                  <Link to={`/courses/${course._id}`} class="card-link">
+                    See Details
+                  </Link>{" "}
+                </div>
+              </div>
             </div>
-          </div>
-        );
-      })}
-    </div>
+          );
+        })}
+      </div>
+    </>
   );
 }

@@ -3,7 +3,9 @@ import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import axios from "axios";
+
 import "./CourseCreate.css";
+import "./Login.css";
 
 export default function SignupPage() {
   const [organizationName, setOrganizationName] = useState("");
@@ -39,7 +41,7 @@ export default function SignupPage() {
 
   return (
     <div className="SignupPage">
-      <h3>If you represent an Organization, you can register below:</h3>
+      <h5>If you represent an Organization, you can register below:</h5>
       {message && <p className="error">{message}</p>}
       <form onSubmit={handleSignupSubmit}>
         <label>
@@ -84,7 +86,11 @@ export default function SignupPage() {
         <button type="submit">Register</button>
       </form>
       <p>
-        If you already have account, <Link to={"/login"}>login here</Link>.
+        If you already have account,{" "}
+        <Link class="orange-link" to={"/login"}>
+          login here
+        </Link>
+        .
       </p>
     </div>
   );

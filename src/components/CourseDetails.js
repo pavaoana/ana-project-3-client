@@ -6,8 +6,10 @@ import EditCourse from "./EditCourse";
 import { AuthContext } from "../context/auth.context";
 
 export default function CourseDetails(props) {
-  console.log("props in the begining", props);
   const { isLoggedIn, user } = useContext(AuthContext);
+
+  console.log("user:", user);
+
   const [course, setCourse] = useState(null);
   const [showEditForm, setShowEditForm] = useState(false);
   const navigate = useNavigate();
@@ -15,12 +17,9 @@ export default function CourseDetails(props) {
   const { courseId } = useParams();
   let courseDetails;
   const { courses } = props;
-  console.log("courses:", courses);
   if (courses) {
     courseDetails = courses.find((course) => course._id === courseId);
   }
-  console.log("courses2:", courses);
-  console.log("course", course);
 
   const getCourse = () => {
     axios

@@ -8,7 +8,6 @@ export default function TopicDetails(props) {
   const { topicId } = useParams();
 
   const { topicsArray } = props;
-  console.log("topicsArray", topicsArray);
 
   useEffect(() => {
     if (topicsArray) {
@@ -17,7 +16,6 @@ export default function TopicDetails(props) {
       );
       setSelectedTopic(topicDetails);
     }
-    console.log("topicDetails", selectedTopic);
   }, []);
 
   if (!topicsArray) {
