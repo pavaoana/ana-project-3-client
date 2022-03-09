@@ -33,9 +33,9 @@ export default function SignupPage() {
         navigate("/courses/add");
       })
       .catch((error) => {
-        const message = error.response.data.errorMessage;
+        const errMessage = error.response.data.message;
         console.log("Error creating a new Organization", message);
-        setMessage(message);
+        setMessage(errMessage);
       });
   };
 

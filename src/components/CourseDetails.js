@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import EditCourse from "./EditCourse";
 import { AuthContext } from "../context/auth.context";
+import "./CourseDetails.css";
 
 export default function CourseDetails(props) {
   const { isLoggedIn, user } = useContext(AuthContext);
@@ -27,6 +28,7 @@ export default function CourseDetails(props) {
       .then((response) => {
         const thisCourse = response.data;
         setCourse(thisCourse);
+        console.log("thisCourse", thisCourse);
       })
       .catch((error) => console.log(error));
   };
@@ -47,6 +49,7 @@ export default function CourseDetails(props) {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then(() => {
+        props.updateCourses();
         navigate("/courses/all");
       })
       .catch((err) => console.log(err));
@@ -55,18 +58,15 @@ export default function CourseDetails(props) {
   return (
     <>
       {showEditForm ? (
-        <EditCourse course={course} />
+        <EditCourse course={course} topicsArray={props.topicsArray} />
       ) : (
         <div className="CourseDetails">
           {course && (
             <>
-              {/* <div className="course-img">
-              <img src={course.image} alt={course.courseName} />
-            </div> */}
               <h3>{course.courseName}</h3>
-              {course.author && (
+              {course.author.organizationName && (
                 <>
-                  <p>{course.author}</p>
+                  <p>{course.author.organizationName}</p>
                 </>
               )}
               <p>{course.description}</p>
@@ -76,15 +76,19 @@ export default function CourseDetails(props) {
                     <Link to={`/topics/${topic._id}`}>{topic.topicName} </Link>
                   </li>
                 ))}
-              <p>{course.location}</p>
-              <p>{course.duration}</p>
-              <p>{course.schedule}</p>
+              <p>Location: {course.location}</p>
+              <p>Duration: {course.duration}</p>
+              <p>Schedule: {course.schedule}</p>
               {course.preRequisites && (
                 <>
-                  <p>{course.preRequisites}</p>
+                  <p>Pre-Requisites: {course.preRequisites}</p>
                 </>
               )}
-              {course.cost === 0 ? <p>Free</p> : <p>€{course.cost}</p>}
+              {course.cost === 0 ? (
+                <p>Price: Free</p>
+              ) : (
+                <p>Price: €{course.cost}</p>
+              )}
               <p>
                 Click{" "}
                 <a href={course.link} target="_blank">
@@ -94,21 +98,24 @@ export default function CourseDetails(props) {
               </p>{" "}
             </>
           )}
-
+          <br />
           {user && (
             <>
               {isLoggedIn && (
                 <>
-                  <button onClick={handleEditForm}>Edit Course</button>{" "}
-                  <button className="deleteButton" onClick={deleteProject}>
+                  <button onClick={handleEditForm} className="EditButton">
+                    Update Course
+                  </button>{" "}
+                  <button className="DeleteButton" onClick={deleteProject}>
                     Delete Course
                   </button>
                 </>
               )}
             </>
           )}
+          <br />
           <Link to="/courses/all">
-            <button>Go back to all courses</button>
+            <button className="GoBack">Go back to all courses</button>
           </Link>
         </div>
       )}

@@ -17,7 +17,9 @@ li {
 .SignupPage,
 .LoginPage,
 .CreateCourse,
-.CreateTopic {
+.CreateTopic,
+.CourseDetails,
+.EditCourse {
   margin-top: 7rem;
   font-weight: bold;
 }

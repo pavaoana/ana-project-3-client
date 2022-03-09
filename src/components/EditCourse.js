@@ -6,10 +6,12 @@ import "./CourseCreate.css";
 
 export default function EditCourse(props) {
   const { user } = useContext(AuthContext);
-  console.log("user:", user);
+  const { topicsArray } = props;
+  console.log("props", props);
+  console.log("topicsArray", topicsArray);
   const [courseName, setCourseName] = useState(props.course.courseName);
   const [description, setDescription] = useState(props.course.description);
-  //const [topics, setTopics] = useState([props.course.topics]);
+  const [topics, setTopics] = useState([props.course.topics]);
   // const [image, setImage] = useState(); // ???
   const [location, setLocation] = useState(props.course.location);
   const [duration, setDuration] = useState(props.course.duration);
@@ -54,12 +56,21 @@ export default function EditCourse(props) {
       )
       .then((response) => {
         setSuccessMsg(response.data.successMessage);
-        navigate(`/courses/${courseId}`);
-      });
+        navigate(`/courses/all`);
+      })
+      .catch((e) =>
+        console.log("An error occured while editing the course.", e)
+      );
+
+    // let selectedTopics = topicsArray.filter((topicChecked) => !courses.topics.includes(topicChecked))
+
+    // forEach((topicChecked) => {})
   };
 
   return (
     <>
+      {successMsg && <p className="success">{successMsg}</p>}
+
       {successMsg ? (
         <h3>{successMsg}</h3>
       ) : (
@@ -89,33 +100,24 @@ export default function EditCourse(props) {
               />
             </label>
             <br />
-            {/* 
-            {props.topics.map((topic) => (
-              <>
-                <label key={topic._id}>
-                  {topic.topicName}
+            <label>Topics:</label> <br />
+            <div className="TopicsChecklistDiv">
+              {topicsArray.map((topic) => (
+                <>
+                  <label className="TopicsChecklist" key={topic._id}>
+                    {topic.topicName}
 
-                  <input
-                    type="checkbox"
-                    name={topic._id}
-                    value={selectedTopics[topic._id]}
-                    onChange={(e) => setTopics(e.target.value)}
-                  />
-                </label>
-              </>
-            ))} */}
-
+                    <input
+                      type="checkbox"
+                      name={topic._id}
+                      value={selectedTopics[topic._id]}
+                      onChange={(e) => setTopics(e.target.value)}
+                    />
+                  </label>
+                </>
+              ))}{" "}
+            </div>
             <br />
-            {/* <label>
-              Topics: <br />
-              <select name="topics">
-                <option
-                  value={topics}
-                  onChange={(e) => setTopics(e.target.value)}
-                ></option>
-              </select>
-            </label>
-            <br /> */}
             <label>
               Location: <br />
               <input
@@ -186,6 +188,7 @@ export default function EditCourse(props) {
           </form>
         </div>
       )}
+      {successMsg && <p className="success">{successMsg}</p>}
     </>
   );
 }

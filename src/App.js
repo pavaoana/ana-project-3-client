@@ -69,14 +69,10 @@ function App() {
           element={<CoursesAll courses={coursesArr} />}
         />
 
-        <Route path="/courses/:courseId" element={<CourseDetails />} />
-
         <Route
-          path="/courses/edit/:courseId"
+          path="/courses/:courseId"
           element={
-            <IsPrivate>
-              <EditCourse topicsArray={topicsArr} />
-            </IsPrivate>
+            <CourseDetails topicsArray={topicsArr} updateCourses={getCourses} />
           }
         />
 
@@ -101,7 +97,10 @@ function App() {
           path="/topics/add"
           element={
             <IsPrivate>
-              <TopicCreate />
+              <TopicCreate
+                updateCourses={getCourses}
+                updatedTopics={getAllTopics}
+              />
             </IsPrivate>
           }
         />

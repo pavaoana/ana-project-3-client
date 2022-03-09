@@ -32,9 +32,9 @@ export default function LoginPage() {
         navigate("/courses/add");
       })
       .catch((error) => {
-        const message = error.response.data.errorMessage;
+        const errMessage = error.response.data.message;
         console.log("An error occured while trying to login:", message);
-        setMessage(message);
+        setMessage(errMessage);
       });
   };
 

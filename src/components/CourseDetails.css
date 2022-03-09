@@ -1,0 +1,27 @@
+.CourseDetails {
+  font-weight: normal;
+}
+
+.DeleteButton,
+.GoBack,
+.EditButton {
+  margin-bottom: 5px;
+  width: fit-content;
+  padding: 0.5rem;
+}
+
+.DeleteButton {
+  background-color: brown;
+}
+
+.DeleteButton:hover {
+  background-color: rgba(165, 42, 42, 0.654);
+}
+
+.GoBack {
+  background-color: #4c70af
+}
+
+.GoBack:hover {
+  background-color: #4c70afe1;
+}

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./CoursesAll.css";
 
 export default function CoursesAll(props) {
+  console.log("props", props);
   function compareDates(a, b) {
     const aCreatedDate = new Date(a.createdAt);
     const bCreatedDate = new Date(b.createdAt);
@@ -15,6 +16,7 @@ export default function CoursesAll(props) {
     <>
       <div class="row space-above">
         {props.courses.sort(compareDates).map((course) => {
+          console.log("course", course);
           return (
             <div class="col-sm-4 row">
               <div class="card">
@@ -23,7 +25,7 @@ export default function CoursesAll(props) {
                     {course.courseName}
                   </h4>
                   <p class="card-text name-org">
-                    NAME OF ORGANIZATION GOES HERE
+                    {course.author.organizationName}
                   </p>
                   {course.cost === 0 ? (
                     <p class="money-bold">Free!</p>
