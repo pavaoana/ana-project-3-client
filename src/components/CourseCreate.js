@@ -8,8 +8,6 @@ import "./CourseCreate.css";
 export default function CourseCreate(props) {
   const [courseName, setCourseName] = useState("");
   const [description, setDescription] = useState("");
-
-  console.log("props.topicsArray", props.topicsArray);
   const [selectedTopics, setSelectedTopics] = useState({}); //plain object as state
 
   const handleChange = (event) => {

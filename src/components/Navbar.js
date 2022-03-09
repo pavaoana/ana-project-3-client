@@ -40,6 +40,11 @@ export default function Navbar() {
                 <>
                   {" "}
                   <li class="nav-item">
+                    <Link to="/courses/my-courses" class="nav-link nav-right">
+                      My Courses
+                    </Link>
+                  </li>
+                  <li class="nav-item">
                     <Link to="/courses/add" class="nav-link nav-right">
                       Add a Course
                     </Link>

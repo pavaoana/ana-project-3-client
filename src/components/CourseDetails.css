@@ -5,9 +5,10 @@
 .DeleteButton,
 .GoBack,
 .EditButton {
-  margin-bottom: 5px;
+  margin: 5px;
   width: fit-content;
   padding: 0.5rem;
+  text-align: center;
 }
 
 .DeleteButton {
@@ -19,9 +20,38 @@
 }
 
 .GoBack {
-  background-color: #4c70af
+  background-color: #4c70af;
 }
 
-.GoBack:hover {
+.GoBack:hover,
+.TopicButton:hover {
   background-color: #4c70afe1;
+}
+
+.TopicDetails {
+  display: inline;
+}
+
+.TopicButton {
+  width: fit-content;
+  padding: 2px 7px;
+  margin-bottom: 1.5rem;
+  background-color: #48474781;
+}
+
+.left {
+  text-align: left;
+}
+
+.ColorLink {
+  color: #4c70af
+}
+
+.ColorLink:hover {
+  color: #4c70af;
+  text-decoration: underline;
+}
+
+.TopicDescr {
+  width: fit-content;
 }

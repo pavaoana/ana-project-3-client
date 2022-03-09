@@ -18,11 +18,13 @@ import TopicCreate from "./components/TopicCreate";
 import TopicDetails from "./components/TopicDetails";
 import TopicsAll from "./components/TopicsAll";
 import EditCourse from "./components/EditCourse";
+import CoursesMy from "./components/CoursesMy";
 
 function App() {
   const [coursesArr, setCoursesArr] = useState([]);
   const [topicsArr, setTopicsArr] = useState([]);
   const { isLoggedIn, getToken } = useContext(AuthContext);
+  const [q, setQ] = useState("");
 
   useEffect(() => {
     getCourses();
@@ -38,6 +40,7 @@ function App() {
       })
       .then((response) => {
         setCoursesArr(response.data);
+        //getCourses();
       })
       .catch((e) => console.log("Error getting list of all courses", e));
   };
@@ -66,7 +69,18 @@ function App() {
 
         <Route
           path="/courses/all"
-          element={<CoursesAll courses={coursesArr} />}
+          element={
+            <CoursesAll courses={coursesArr} updateCourses={getCourses} />
+          }
+        />
+
+        <Route
+          path="/courses/my-courses"
+          element={
+            <IsPrivate>
+              <CoursesMy courses={coursesArr} updateCourses={getCourses} />{" "}
+            </IsPrivate>
+          }
         />
 
         <Route

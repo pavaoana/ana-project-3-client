@@ -19,7 +19,8 @@ li {
 .CreateCourse,
 .CreateTopic,
 .CourseDetails,
-.EditCourse {
+.EditCourse,
+.success {
   margin-top: 7rem;
   font-weight: bold;
 }

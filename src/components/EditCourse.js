@@ -1,14 +1,14 @@
 import axios from "axios";
 import { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router";
+
+import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import "./CourseCreate.css";
 
 export default function EditCourse(props) {
   const { user } = useContext(AuthContext);
   const { topicsArray } = props;
-  console.log("props", props);
-  console.log("topicsArray", topicsArray);
   const [courseName, setCourseName] = useState(props.course.courseName);
   const [description, setDescription] = useState(props.course.description);
   const [topics, setTopics] = useState([props.course.topics]);
@@ -56,7 +56,8 @@ export default function EditCourse(props) {
       )
       .then((response) => {
         setSuccessMsg(response.data.successMessage);
-        navigate(`/courses/all`);
+        props.updateCourses();
+        navigate(`/courses/my-courses`);
       })
       .catch((e) =>
         console.log("An error occured while editing the course.", e)
@@ -69,10 +70,8 @@ export default function EditCourse(props) {
 
   return (
     <>
-      {successMsg && <p className="success">{successMsg}</p>}
-
       {successMsg ? (
-        <h3>{successMsg}</h3>
+        <></>
       ) : (
         <div className="EditCourse">
           <h5>To update the selected course, change the form below:</h5>
@@ -188,7 +187,16 @@ export default function EditCourse(props) {
           </form>
         </div>
       )}
-      {successMsg && <p className="success">{successMsg}</p>}
+      {successMsg && (
+        <>
+          <p className="success">{successMsg}</p>{" "}
+          <p>
+            <Link to={`/courses/all`} class="card-link">
+              Go back to all courses
+            </Link>
+          </p>
+        </>
+      )}
     </>
   );
 }

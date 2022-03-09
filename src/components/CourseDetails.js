@@ -5,12 +5,11 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import EditCourse from "./EditCourse";
 import { AuthContext } from "../context/auth.context";
 import "./CourseDetails.css";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
 
 export default function CourseDetails(props) {
   const { isLoggedIn, user } = useContext(AuthContext);
-
-  console.log("user:", user);
-
   const [course, setCourse] = useState(null);
   const [showEditForm, setShowEditForm] = useState(false);
   const navigate = useNavigate();
@@ -28,7 +27,6 @@ export default function CourseDetails(props) {
       .then((response) => {
         const thisCourse = response.data;
         setCourse(thisCourse);
-        console.log("thisCourse", thisCourse);
       })
       .catch((error) => console.log(error));
   };
@@ -39,6 +37,7 @@ export default function CourseDetails(props) {
 
   const handleEditForm = () => {
     setShowEditForm(true);
+    //const storedToken = getToken();
   };
 
   const deleteProject = () => {
@@ -50,7 +49,7 @@ export default function CourseDetails(props) {
       })
       .then(() => {
         props.updateCourses();
-        navigate("/courses/all");
+        navigate("/courses/my-courses");
       })
       .catch((err) => console.log(err));
   };
@@ -58,65 +57,123 @@ export default function CourseDetails(props) {
   return (
     <>
       {showEditForm ? (
-        <EditCourse course={course} topicsArray={props.topicsArray} />
+        <EditCourse
+          course={course}
+          topicsArray={props.topicsArray}
+          updateCourses={props.updateCourses}
+        />
       ) : (
-        <div className="CourseDetails">
+        <div class="row space-above" className="CourseDetails">
           {course && (
-            <>
-              <h3>{course.courseName}</h3>
-              {course.author.organizationName && (
-                <>
-                  <p>{course.author.organizationName}</p>
-                </>
-              )}
-              <p>{course.description}</p>
-              {course &&
-                course.topics.map((topic) => (
-                  <li className="TopicCard inCourse" key={topic._id}>
-                    <Link to={`/topics/${topic._id}`}>{topic.topicName} </Link>
-                  </li>
-                ))}
-              <p>Location: {course.location}</p>
-              <p>Duration: {course.duration}</p>
-              <p>Schedule: {course.schedule}</p>
-              {course.preRequisites && (
-                <>
-                  <p>Pre-Requisites: {course.preRequisites}</p>
-                </>
-              )}
-              {course.cost === 0 ? (
-                <p>Price: Free</p>
-              ) : (
-                <p>Price: €{course.cost}</p>
-              )}
-              <p>
-                Click{" "}
-                <a href={course.link} target="_blank">
-                  here
-                </a>{" "}
-                if you want to know more.
-              </p>{" "}
-            </>
+            <div class="col-sm-4 row details-box">
+              <div class="card">
+                <div class="card-body" key={course._id}>
+                  <h4 class="card-title h4-title-course">
+                    {course.courseName}{" "}
+                  </h4>
+                  {course.author.organizationName && (
+                    <>
+                      <p class="card-text name-org">
+                        {course.author.organizationName}
+                      </p>
+                    </>
+                  )}
+                  {course &&
+                    course.topics.map((topic) => (
+                      <>
+                        <p key={topic._id} className="TopicDetails">
+                          <Popup
+                            contentStyle={{
+                              width: "fit-content",
+                              maxWidth: "25rem",
+                              backgroundColor: "#cbdcfa",
+                              padding: "1rem",
+                              fontSize: "11pt",
+                            }}
+                            trigger={
+                              <button className="TopicButton">
+                                {topic.topicName}
+                              </button>
+                            }
+                            position="bottom center"
+                          >
+                            {(close) => (
+                              <div>
+                                {topic.description}
+                                <a className="close" onClick={close}>
+                                  &times;
+                                </a>
+                              </div>
+                            )}
+                          </Popup>
+                        </p>
+                      </>
+                    ))}
+                  <p class="card-text left">{course.description}</p>
+                  <p class="card-text left">
+                    <b>Location:</b> {course.location}
+                  </p>
+                  <p class="card-text left">
+                    <b>Duration:</b> {course.duration}
+                  </p>
+                  <p class="card-text left">
+                    <b>Schedule:</b> {course.schedule}
+                  </p>
+                  {course.preRequisites && (
+                    <>
+                      <p class="card-text left">
+                        <b>Pre-Requisites:</b> {course.preRequisites}
+                      </p>
+                    </>
+                  )}
+                  {course.cost === 0 ? (
+                    <p class="card-text left">
+                      <b>Price: </b> Free
+                    </p>
+                  ) : (
+                    <p class="card-text left">
+                      <b>Price: </b> € {course.cost}
+                    </p>
+                  )}
+                  <p class="card-text">
+                    <a href={course.link} target="_blank" className="ColorLink">
+                      Take me to the course!
+                    </a>
+                  </p>
+                  {isLoggedIn && user._id === course.author._id && (
+                    <>
+                      <Link to="/courses/my-courses">
+                        <button className="GoBack">
+                          « Go back to your courses
+                        </button>
+                      </Link>
+                      <button onClick={handleEditForm} className="EditButton">
+                        Update Course
+                      </button>
+
+                      <button className="DeleteButton" onClick={deleteProject}>
+                        Delete Course
+                      </button>
+                    </>
+                  )}
+                  {isLoggedIn && user._id !== course.author._id && (
+                    <>
+                      <Link to="/courses/all">
+                        <button className="GoBack">
+                          « Go back to all courses
+                        </button>
+                      </Link>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
           )}
-          <br />
-          {user && (
-            <>
-              {isLoggedIn && (
-                <>
-                  <button onClick={handleEditForm} className="EditButton">
-                    Update Course
-                  </button>{" "}
-                  <button className="DeleteButton" onClick={deleteProject}>
-                    Delete Course
-                  </button>
-                </>
-              )}
-            </>
+          {!isLoggedIn && (
+            <Link to="/courses/all">
+              <button className="GoBack">« Go back to all courses</button>
+            </Link>
           )}
-          <br />
-          <Link to="/courses/all">
-            <button className="GoBack">Go back to all courses</button>
-          </Link>
         </div>
       )}
     </>

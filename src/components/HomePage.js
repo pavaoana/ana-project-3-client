@@ -16,7 +16,7 @@ export default function HomePage() {
 
       <div class="row">
         <div class="col-sm-6">
-          <div class="card border-orange">
+          <div class="card border-orange more-padding">
             <div class="card-body">
               <h4 class="card-title">
                 Looking for a <b>new career</b>?
@@ -32,7 +32,7 @@ export default function HomePage() {
           </div>
         </div>
         <div class="col-sm-6">
-          <div class="card border-orange">
+          <div class="card border-orange more-padding">
             <div class="card-body">
               <h4 class="card-title">
                 Are you an <span className="Highlight">Organization</span>?

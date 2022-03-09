@@ -71,6 +71,7 @@ export default function LoginPage() {
             onChange={handlePassword}
           />
         </label>
+        {}
         <br />
         <button type="submit">Login</button>
       </form>
