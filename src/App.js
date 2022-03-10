@@ -3,7 +3,6 @@ import "./App.css";
 import { useContext, useEffect, useState } from "react";
 import { Route, Routes } from "react-router";
 import { AuthContext } from "./context/auth.context";
-import { useParams } from "react-router-dom";
 import axios from "axios";
 import CourseCreate from "./components/CourseCreate";
 import CourseDetails from "./components/CourseDetails";
@@ -17,8 +16,8 @@ import SignupPage from "./components/SignupPage";
 import TopicCreate from "./components/TopicCreate";
 import TopicDetails from "./components/TopicDetails";
 import TopicsAll from "./components/TopicsAll";
-import EditCourse from "./components/EditCourse";
 import CoursesMy from "./components/CoursesMy";
+import NotFound from "./components/NotFound";
 
 function App() {
   const [coursesArr, setCoursesArr] = useState([]);
@@ -65,16 +64,16 @@ function App() {
       </div>
 
       <Routes>
-        <Route path="/" element={<HomePage />} />
-
+        <Route exact path="/" element={<HomePage />} />
         <Route
+          exact
           path="/courses/all"
           element={
             <CoursesAll courses={coursesArr} updateCourses={getCourses} />
           }
         />
-
         <Route
+          exact
           path="/courses/my-courses"
           element={
             <IsPrivate>
@@ -82,15 +81,15 @@ function App() {
             </IsPrivate>
           }
         />
-
         <Route
+          exact
           path="/courses/:courseId"
           element={
             <CourseDetails topicsArray={topicsArr} updateCourses={getCourses} />
           }
         />
-
         <Route
+          exact
           path="/courses/add"
           element={
             <IsPrivate>
@@ -101,13 +100,13 @@ function App() {
             </IsPrivate>
           }
         />
-
         <Route
+          exact
           path="/topics/:topicId"
           element={<TopicDetails topicsArray={topicsArr} />}
         />
-
         <Route
+          exact
           path="/topics/add"
           element={
             <IsPrivate>
@@ -118,12 +117,10 @@ function App() {
             </IsPrivate>
           }
         />
-
-        <Route path="/topics/all" element={<TopicsAll topics={topicsArr} />} />
-
-        <Route path="/topics/:topicId" element={<TopicDetails />} />
-
+        {/* <Route exact path="/topics/all" element={<TopicsAll topics={topicsArr} />} /> */}
+        <Route exact path="/topics/:topicId" element={<TopicDetails />} />
         <Route
+          exact
           path="/signup"
           element={
             <IsInvisible>
@@ -131,8 +128,8 @@ function App() {
             </IsInvisible>
           }
         />
-
         <Route
+          exact
           path="/login"
           element={
             <IsInvisible>
@@ -140,6 +137,7 @@ function App() {
             </IsInvisible>
           }
         />
+        {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
     </div>
   );
