@@ -103,14 +103,13 @@ export default function CourseCreate(props) {
           {props.topicsArray
             .map((topic) => (
               <label className="TopicsChecklist" key={topic._id}>
-                {topic.topicName}
-
                 <input
                   type="checkbox"
                   name={topic._id}
                   value={selectedTopics[topic._id]}
                   onChange={handleChange}
                 />
+                {topic.topicName}
               </label>
             ))
             .sort(orderTopics)}

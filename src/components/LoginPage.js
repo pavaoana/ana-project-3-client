@@ -42,7 +42,11 @@ export default function LoginPage() {
     <div className="LoginPage">
       <h5>Fill the form below to login:</h5>
 
-      {message && <p className="error">{message}</p>}
+      {message && (
+        <div className="error-div">
+          <p className="error">{message}</p>
+        </div>
+      )}
 
       <form onSubmit={handleLoginSubmit} className="padding-form">
         <label>

@@ -49,7 +49,7 @@ export default function CourseDetails(props) {
       })
       .then(() => {
         props.updateCourses();
-        navigate("/courses/my-courses");
+        navigate("/courses/all");
       })
       .catch((err) => console.log(err));
   };
@@ -63,108 +63,119 @@ export default function CourseDetails(props) {
           updateCourses={props.updateCourses}
         />
       ) : (
-        <div class="row space-above" className="CourseDetails">
+        <div class="container space-above" className="CourseDetails">
           {course && (
-            <div class="col-sm-4 row details-box">
-              <div class="card">
-                <div class="card-body" key={course._id}>
-                  <h4 class="card-title h4-title-course">
-                    {course.courseName}{" "}
-                  </h4>
-                  {course.author.organizationName && (
-                    <>
-                      <p class="card-text name-org">
-                        {course.author.organizationName}
-                      </p>
-                    </>
-                  )}
-                  {course &&
-                    course.topics.map((topic) => (
+            <div class="row detail-row">
+              <div class="col-sm different-size col-detail">
+                <div class="card detail-card">
+                  <div
+                    class="card-body other-color-cardz this-background"
+                    key={course._id}
+                  >
+                    <h4 class=" h4-title-det">{course.courseName}</h4>
+                    {course.author.organizationName && (
                       <>
-                        <p key={topic._id} className="TopicDetails">
-                          <Popup
-                            contentStyle={{
-                              width: "fit-content",
-                              maxWidth: "25rem",
-                              backgroundColor: "#cbdcfa",
-                              padding: "1rem",
-                              fontSize: "11pt",
-                            }}
-                            trigger={
-                              <button className="TopicButton">
-                                {topic.topicName}
-                              </button>
-                            }
-                            position="bottom center"
-                          >
-                            {(close) => (
-                              <div>
-                                {topic.description}
-                                <a className="close" onClick={close}>
-                                  &times;
-                                </a>
-                              </div>
-                            )}
-                          </Popup>
-                        </p>
+                        <p class="name">{course.author.organizationName}</p>
                       </>
-                    ))}
-                  <p class="card-text left">{course.description}</p>
-                  <p class="card-text left">
-                    <b>Location:</b> {course.location}
-                  </p>
-                  <p class="card-text left">
-                    <b>Duration:</b> {course.duration}
-                  </p>
-                  <p class="card-text left">
-                    <b>Schedule:</b> {course.schedule}
-                  </p>
-                  {course.preRequisites && (
-                    <>
-                      <p class="card-text left">
-                        <b>Pre-Requisites:</b> {course.preRequisites}
-                      </p>
-                    </>
-                  )}
-                  {course.cost === 0 ? (
-                    <p class="card-text left">
-                      <b>Price: </b> Free
-                    </p>
-                  ) : (
-                    <p class="card-text left">
-                      <b>Price: </b> € {course.cost}
-                    </p>
-                  )}
-                  <p class="card-text">
-                    <a href={course.link} target="_blank" className="ColorLink">
-                      Take me to the course!
-                    </a>
-                  </p>
-                  {isLoggedIn && user._id === course.author._id && (
-                    <>
-                      <Link to="/courses/my-courses">
-                        <button className="GoBack">
-                          « Go back to your courses
-                        </button>
-                      </Link>
-                      <button onClick={handleEditForm} className="EditButton">
-                        Update Course
-                      </button>
+                    )}
 
-                      <button className="DeleteButton" onClick={deleteProject}>
-                        Delete Course
-                      </button>
-                    </>
-                  )}
-                  {isLoggedIn && user._id !== course.author._id && (
-                    <>
-                      <Link to="/courses/all">
-                        <button className="GoBack">
-                          « Go back to all courses
+                    {course &&
+                      course.topics.map((topic) => (
+                        <>
+                          <p key={topic._id} className="TopicDetails">
+                            <Popup
+                              contentStyle={{
+                                width: "fit-content",
+                                maxWidth: "25rem",
+                                backgroundColor: "#126E82",
+                                color: "white",
+                                padding: "1rem",
+                                fontSize: "11pt",
+                              }}
+                              trigger={
+                                <button className="TopicButton">
+                                  {topic.topicName}
+                                </button>
+                              }
+                              position="bottom center"
+                            >
+                              {(close) => (
+                                <div className="topic-description">
+                                  {topic.description}
+                                  <a className="close" onClick={close}>
+                                    &times;
+                                  </a>
+                                </div>
+                              )}
+                            </Popup>
+                          </p>
+                        </>
+                      ))}
+
+                    <h2 class="left normal-text">{course.description}</h2>
+                    <h2 class=" left normal-text">
+                      <b>Location:</b> {course.location}
+                    </h2>
+                    <h2 class="left normal-text">
+                      <b>Duration:</b> {course.duration}
+                    </h2>
+                    <h2 class=" left normal-text">
+                      <b>Schedule:</b> {course.schedule}
+                    </h2>
+                    {course.preRequisites && (
+                      <>
+                        <h2 class=" left normal-text">
+                          <b>Pre-Requisites:</b> {course.preRequisites}
+                        </h2>
+                      </>
+                    )}
+                    {course.cost === 0 ? (
+                      <h2 class=" left normal-text">
+                        <b>Price: </b> Free
+                      </h2>
+                    ) : (
+                      <h2 class=" left normal-text">
+                        <b>Price: </b> € {course.cost}
+                      </h2>
+                    )}
+                    <p class="card-text">
+                      <a
+                        href={course.link}
+                        target="_blank"
+                        className="ColorLink"
+                      >
+                        Take me to the course!
+                      </a>
+                    </p>
+                    {isLoggedIn && user._id === course.author._id && (
+                      <>
+                        <Link to="/courses/my-courses">
+                          <button className="GoBack">
+                            « Go back to your courses
+                          </button>
+                        </Link>
+                        <button onClick={handleEditForm} className="EditButton">
+                          Update Course
                         </button>
-                      </Link>
-                    </>
-                  )}
+
+                        <button
+                          className="DeleteButton"
+                          onClick={deleteProject}
+                        >
+                          Delete Course
+                        </button>
+                      </>
+                    )}
+                    {isLoggedIn && user._id !== course.author._id && (
+                      <>
+                        <Link to="/courses/all">
+                          <button className="GoBack">
+                            « Go back to all courses
+                          </button>
+                        </Link>
+                      </>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

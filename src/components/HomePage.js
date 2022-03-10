@@ -35,7 +35,7 @@ export default function HomePage() {
           <div class="card border-orange more-padding">
             <div class="card-body">
               <h4 class="card-title">
-                Are you an <span className="Highlight">Organization</span>?
+                Are you an <b>Organization</b>?
               </h4>
               <p class="card-text">
                 <Link class="orange-link" to={"/signup"}>

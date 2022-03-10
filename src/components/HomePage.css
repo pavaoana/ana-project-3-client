@@ -1,6 +1,11 @@
 * {
-  color: rgb(68, 66, 66);
-  ;
+  color: #132C33;
+  font-family: "Trebuchet MS",
+    "Segoe UI",
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
 }
 
 .HomePage {
@@ -8,25 +13,21 @@
   padding: 20px;
   line-height: 2rem;
   font-weight: normal;
-  color: rgb(68, 66, 66);
+  /* color: rgb(68, 66, 66); */
   font-size: x-large;
 }
 
 h1 {
-  padding-top: 13rem;
+  padding-top: 11rem;
   padding-bottom: 4rem;
   font-size: 7vw;
-  color: #4c70af;
+  color: #132C33;
   font-weight: 800;
 }
 
 .TitleSpan,
 .orange-link {
-  color: #d56423;
-}
-
-a {
-  color: #d56423;
+  color: #51C4D3;
 }
 
 * {
@@ -57,11 +58,26 @@ body {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 16px;
   text-align: center;
-  border: solid #d56423;
+  border: solid #126E82;
   border-radius: 1rem;
 }
 
 .more-padding {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding: 5rem .3rem;
+}
+
+.card {
+  background-color: #126E82;
+}
+
+
+.card-title,
+.card-title b {
+  color: white;
+  font-size: x-large;
+}
+
+.card-text {
+  color: white;
+  font-size: large;
 }

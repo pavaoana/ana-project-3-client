@@ -18,7 +18,6 @@ export default function CourseCreate(props) {
     });
   };
 
-  // const [image, setImage] = useState(); // ???
   const [location, setLocation] = useState("");
   const [duration, setDuration] = useState("");
   const [schedule, setSchedule] = useState();
@@ -37,7 +36,6 @@ export default function CourseCreate(props) {
       courseName,
       description,
       selectedTopics,
-      // image,
       location,
       duration,
       schedule,
@@ -61,10 +59,6 @@ export default function CourseCreate(props) {
       .catch((e) =>
         console.log("An error occured while creating a new course.", e)
       );
-
-    const orderTopics = function order(a, b) {
-      return a < b ? -1 : a > b ? 1 : 0;
-    };
   };
 
   return (
@@ -101,14 +95,13 @@ export default function CourseCreate(props) {
           {props.topicsArray
             .map((topic) => (
               <label className="TopicsChecklist" key={topic._id}>
-                {topic.topicName}
-
                 <input
                   type="checkbox"
                   name={topic._id}
                   value={selectedTopics[topic._id]}
                   onChange={handleChange}
                 />
+                {topic.topicName}
               </label>
             ))
             .sort()}

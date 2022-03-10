@@ -15,15 +15,12 @@ import Navbar from "./components/Navbar";
 import SignupPage from "./components/SignupPage";
 import TopicCreate from "./components/TopicCreate";
 import TopicDetails from "./components/TopicDetails";
-import TopicsAll from "./components/TopicsAll";
 import CoursesMy from "./components/CoursesMy";
-import NotFound from "./components/NotFound";
 
 function App() {
   const [coursesArr, setCoursesArr] = useState([]);
   const [topicsArr, setTopicsArr] = useState([]);
   const { isLoggedIn, getToken } = useContext(AuthContext);
-  const [q, setQ] = useState("");
 
   useEffect(() => {
     getCourses();
@@ -39,7 +36,6 @@ function App() {
       })
       .then((response) => {
         setCoursesArr(response.data);
-        //getCourses();
       })
       .catch((e) => console.log("Error getting list of all courses", e));
   };
@@ -117,7 +113,7 @@ function App() {
             </IsPrivate>
           }
         />
-        {/* <Route exact path="/topics/all" element={<TopicsAll topics={topicsArr} />} /> */}
+
         <Route exact path="/topics/:topicId" element={<TopicDetails />} />
         <Route
           exact
@@ -137,7 +133,6 @@ function App() {
             </IsInvisible>
           }
         />
-        {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
     </div>
   );

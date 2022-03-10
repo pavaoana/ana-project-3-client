@@ -25,6 +25,7 @@ select {
 }
 
 .TopicsChecklistDiv {
+  background-color: white;
   width: 30rem;
   display: inline-block;
   border: 1px solid #ccc;
@@ -40,10 +41,11 @@ input[type=checkbox] {
 }
 
 button[type=submit],
+.GoBack,
 .deleteButton {
   width: 20rem;
-  background-color: #4c70af;
-  color: white;
+  background-color: #51C4D3;
+  color: #132C33;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
@@ -55,8 +57,9 @@ button[type=submit],
   background-color: #d56423;
 }
 
-button[type=submit]:hover {
-  background-color: #4c70afe1;
+button[type=submit]:hover,
+.GoBack:hover {
+  background-color: #63cfdd;
 }
 
 .deleteButton:hover {
@@ -72,5 +75,5 @@ button[type=submit]:hover {
   padding: 20px;
   font-weight: bold;
   line-height: 2rem;
-  color: rgb(68, 66, 66);
+  color: #132C33;
 }

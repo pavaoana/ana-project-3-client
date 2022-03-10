@@ -9,17 +9,38 @@ h5 {
 
 .card {
   margin-bottom: 2rem;
+
+}
+
+.other-color-cards {
+  background-color: #D8E3E7;
+  border-radius: 0.2rem;
+  border: #126E82;
+  border: solid white 5px;
+}
+
+.other-color-cards h4 {
+  color: #132C33;
+}
+
+.other-color-cards p {
+  color: #126E82;
+}
+
+.other-color-cards h6 {
+  color: #132C33;
+  padding-bottom: 1rem;
 }
 
 .card-link {
-  color: #d56423e3;
-  background-color: #d564231e;
+  color: #D8E3E7;
+  background-color: #132C33;
   padding: 0.5rem;
   border-radius: 0.5rem;
 }
 
 .card-link:hover {
-  color: #4c70af;
+  color: #126E82;
 }
 
 .money-bold {
@@ -33,4 +54,8 @@ h5 {
 
 .h4-title-course {
   font-weight: bold;
+}
+
+h2 {
+  font-size: medium;
 }
