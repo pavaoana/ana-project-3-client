@@ -102,15 +102,17 @@ export default function CourseCreate(props) {
         <div className="TopicsChecklistDiv">
           {props.topicsArray
             .map((topic) => (
-              <label className="TopicsChecklist" key={topic._id}>
-                <input
-                  type="checkbox"
-                  name={topic._id}
-                  value={selectedTopics[topic._id]}
-                  onChange={handleChange}
-                />
-                {topic.topicName}
-              </label>
+              <span className="wrap">
+                <label className="TopicsChecklist" key={topic._id}>
+                  <input
+                    type="checkbox"
+                    name={topic._id}
+                    value={selectedTopics[topic._id]}
+                    onChange={handleChange}
+                  />
+                  {topic.topicName}
+                </label>
+              </span>
             ))
             .sort(orderTopics)}
         </div>
