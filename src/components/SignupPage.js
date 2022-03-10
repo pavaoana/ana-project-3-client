@@ -42,7 +42,13 @@ export default function SignupPage() {
   return (
     <div className="SignupPage">
       <h5>If you represent an Organization, you can register below:</h5>
-      {message && <p className="error">{message}</p>}
+
+      {message && (
+        <div className="error-div-signup">
+          <p className="error">{message}</p>
+        </div>
+      )}
+
       <form onSubmit={handleSignupSubmit}>
         <label>
           Name of Your Organization:

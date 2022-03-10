@@ -12,8 +12,20 @@ h5 {
 
 }
 
+.space-above-extra {
+  margin-top: 14rem;
+}
+
+.less {
+  padding-bottom: 1rem;
+}
+
+.empty {
+  margin-top: 0;
+}
+
 .other-color-cards {
-  background-color: #D8E3E7;
+  background-color: white;
   border-radius: 0.2rem;
   border: #126E82;
   border: solid white 5px;

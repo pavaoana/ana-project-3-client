@@ -35,8 +35,8 @@ code {
   text-align: center;
 }
 
-
-.error-div {
+.error-div,
+.error-div-signup {
   display: flex;
   align-items: center;
   justify-content: center;

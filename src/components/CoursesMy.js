@@ -62,7 +62,12 @@ export default function CoursesMy(props) {
           })}
         </div>
       ) : (
-        <h1>no courses</h1>
+        <div class="space-above-extra">
+          <h5 className="less">No courses yet.</h5>
+          <Link to="/courses/add">
+            <button className="GoBack empty">Create a Course</button>
+          </Link>
+        </div>
       )}
     </>
   );
