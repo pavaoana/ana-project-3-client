@@ -1,5 +1,7 @@
 import React from "react";
 
+// for the MVP, we're not using the list of all topics
+
 export default function TopicsAll(props) {
   return (
     <div className="AllTopics">

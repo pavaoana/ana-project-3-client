@@ -37,7 +37,6 @@ export default function CourseDetails(props) {
 
   const handleEditForm = () => {
     setShowEditForm(true);
-    //const storedToken = getToken();
   };
 
   const deleteProject = () => {

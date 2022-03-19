@@ -1,7 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+
+// for the MVP we're not using the topics details functionality, since we're using the reactjs-popup npm package to display each topic description
 
 export default function TopicDetails(props) {
   const [selectedTopic, setSelectedTopic] = useState(null);
@@ -26,7 +27,7 @@ export default function TopicDetails(props) {
       {selectedTopic && (
         <>
           <p>{selectedTopic.topicName}</p>
-          <p>topic description</p>
+          <p>{selectedTopic.description}</p>
         </>
       )}
     </div>

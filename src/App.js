@@ -27,6 +27,7 @@ function App() {
     getAllTopics();
   }, [isLoggedIn]);
 
+  // get all the courses created
   const getCourses = () => {
     const storedToken = getToken();
 
@@ -40,6 +41,7 @@ function App() {
       .catch((e) => console.log("Error getting list of all courses", e));
   };
 
+  // get all the topics created
   const getAllTopics = () => {
     const storedToken = getToken();
 
@@ -101,6 +103,7 @@ function App() {
           path="/topics/:topicId"
           element={<TopicDetails topicsArray={topicsArr} />}
         />
+
         <Route
           exact
           path="/topics/add"
@@ -115,6 +118,7 @@ function App() {
         />
 
         <Route exact path="/topics/:topicId" element={<TopicDetails />} />
+
         <Route
           exact
           path="/signup"
@@ -124,6 +128,7 @@ function App() {
             </IsInvisible>
           }
         />
+
         <Route
           exact
           path="/login"

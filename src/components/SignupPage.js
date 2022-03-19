@@ -61,7 +61,7 @@ export default function SignupPage() {
             value={organizationName}
             onChange={handleOrgName}
           />
-        </label>{" "}
+        </label>
         <br />
         <label>
           Email:
@@ -92,7 +92,7 @@ export default function SignupPage() {
         <button type="submit">Register</button>
       </form>
       <p>
-        If you already have account,{" "}
+        If you already have an account,{" "}
         <Link class="orange-link" to={"/login"}>
           login here
         </Link>

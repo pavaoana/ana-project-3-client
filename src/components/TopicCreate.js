@@ -9,7 +9,7 @@ export default function TopicCreate(props) {
   const [topicName, setTopicName] = useState("");
   const [description, setDescription] = useState("");
 
-  const [message, setMessage] = useState(undefined);
+  // const [message, setMessage] = useState(undefined);
 
   const navigate = useNavigate();
   const { getToken } = useContext(AuthContext);
